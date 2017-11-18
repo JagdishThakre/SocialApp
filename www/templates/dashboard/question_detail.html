@@ -11,6 +11,18 @@
         <div class="like-dislike">
           <ul>
             <li>
+              <a href="javascript:;" ng-click="likeUnlike(1)">
+                <img width="30px" src="img/like.png">
+                <span>{{detail.likes}}</span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;" ng-click="likeUnlike(2)">
+                <img width="25px" src="img/dislike.png">
+                <span>{{detail.unlike}}</span>
+              </a>
+            </li>
+            <!-- <li>
               <a href="javascript:;">
                 <img width="30px" src="img/send.png">
                 <span>15</span>
@@ -21,7 +33,7 @@
                 <img width="30px" src="img/bookmark_button.png">
                 <span>25</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -43,11 +55,11 @@
         <div class="col">
           <div class="more-op--btn-q-d">
             <ul>
-              <li>
-                <a href="">Help</a>
+              <li ng-if="userid == detail.user_id">
+                <a href="javascript:;">Help</a>
               </li>
               <li>
-                <a href="">Report </a>
+                <a href="javascript:;" ng-click="reportPopUp()">Report </a>
               </li>
               <li ng-if="userid == detail.user_id">
                 <a href="javascript:;" ng-click="deletePost()">Remove </a>
@@ -67,23 +79,29 @@
           <div class="like-reply-box-c">
             <ul>
               <li>
-                <a href="javascript:;">Like
+                <a href="javascript:;" ng-click="likeCmnt(cmnt.id, 1)">Like
                   <span style="color: gray;">({{cmnt.likes}})</span>
                 </a>
               </li>
               <li>
-                <a href="">Reply </a>
+                <a href="javascript:;" ng-click="likeCmnt(cmnt.id, 2)">UnLike
+                  <span style="color: gray;">({{cmnt.unlikes}})</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;" ng-click="reply(cmnt.id)">Reply </a>
               </li>
             </ul>
           </div>
           <span class="date">{{cmnt.comment_before}}</span>
-          <!-- <div class="reply-box-comment-list list">
-            <div class="reply item item-thumbnail-left" href="#">
-              <img width="50px" src="img/profile_ico.png">
-              <h2>Pretty Hate</h2>
-              <p>Nine Inch Nails</p>
+          <div class="reply-box-comment-list list" ng-if="cmnt.replies">
+            <div class="reply item item-thumbnail-left" ng-repeat="replies in cmnt.replies">
+                <img width="50px" src="img/profile_ico.png" ng-if="replies.user_profile ==''">
+              <img width="50px" src="{{replies.user_profile}}" ng-if="replies.user_profile !==''">
+              <h2>{{replies.user_fullname}}</h2>
+              <p>{{replies.reply}}</p>
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -95,6 +113,6 @@
       <button class="button button-dark q-d-submit-btn" type="button" ng-click="addComment()" style="width: 100%">
         Comment
       </button>
-    </div> 
+    </div>
   </ion-content>
 </ion-view>
