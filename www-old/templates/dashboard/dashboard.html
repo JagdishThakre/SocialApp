@@ -1,0 +1,36 @@
+<ion-view view-title="Dashboard" cache-view="false">
+  <ion-content>
+    <div class="q-box" ng-repeat="list in posts">
+    	<div class="left-q-sec">
+				<div ng-click="detail(list.id)">
+					<h4>{{$index+1}}. {{list.post_title}}</h4>
+					<p class="small-desk">{{list.post_description}}</p>
+					<div class="posted-user-pro">
+					<img ng-if="list.user_profile ==''" src="img/profile_ico.png">
+					<img ng-if="list.user_profile !==''" src="{{list.user_profile}}">
+						<div class="text-rpo-in">
+							<h4>{{list.user_fullname}}</h4>
+							<p>{{list.post_datetime}}</p>
+						</div>
+					</div>
+				</div>
+    	<div class="bookmark-and-share">
+    		<ul>
+    			<li ng-click="shareLink()"><a href="javascript:;"><img width="30px" src="img/send.png"></a></li>
+    			<li ng-click="bookmark(1, list.id)"><a href="javascript:;"><img width="30px" src="img/bookmark_button.png"></a></li>
+    		</ul>
+    	</div>
+    	</div>
+    	<div class="right-q-sec">
+    		<ul>
+    			<li><a href="javascript:;"><img width="20px" src="img/comment.png"></a><span>25</span></li>
+    			<li ng-click="likeUnlike(1, list.id)"><a href="javascript:;"><img width="25px" src="img/like.png"></a><span>{{list.likes}}</span></li>
+    			<li ng-click="likeUnlike(2, list.id)"><a href="javascript:;"><img width="20px" src="img/dislike.png"></a><span>{{list.unlike}}</span></li>
+    		</ul>
+    	</div>
+		</div>
+		<button class="add-question-button" ion-button icon-only>
+			<a href="#/app/addquestion"><img src="img/add_button.png" width="60px"></a>
+		</button>
+  </ion-content>
+</ion-view>

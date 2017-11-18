@@ -1,0 +1,83 @@
+
+<ion-view view-title="Playlist">
+  <ion-content class="login-main-wrap">
+     <div class="profile-image-up">
+       <div class="p-i-hi">
+         <img class="profile-image" ng-show="!image" width="200px" src="img/default_user.png">
+         <img ng-show="image" class="pr-img-main profile-pic-img" ng-src="{{pathForImage(image)}}" width="200px;" >
+       </div>
+       <div class="updaload-icon-box">
+         <img ng-click="getImage()" width="40px;" class="upload_icon" src="img/edit_ico.png">
+       </div>
+     </div>          
+     <form  name="signupForm" id="signupForm" ng-submit="signup(signupForm.$valid)" class="login-form" novalidate>
+      <div class="list">
+        <div class="user-name-vali">
+          <label class="item item-input">
+          <span class="input-label"><img class="mail-img" width="25px" src="img/username.png"></span>
+          <input type="text" required name="user_fullname" ng-model="signupData.user_fullname" placeholder="Full Name">
+        </label>
+        <span ng-show="submitted && signupForm.user_fullname.$error.required" class="validation-login popup-forvalidation">Please enter full name</span>
+        </div>
+        <div class="email-vali">
+          <label class="item item-input">
+          <span class="input-label"><img class="mail-img" width="25px" src="img/mail_icon.png"></span>
+          <input type="email" required name="user_email" ng-model="signupData.user_email" placeholder="Email ID">
+        </label>
+        <span ng-show="submitted && signupForm.user_email.$error.required" class="validation-login popup-forvalidation">Please enter email-Id</span>
+        </div>
+        <div class="password-vali">
+        <label class="item item-input">
+          <span class="input-label"><img class="mail-img" width="25px" src="img/mobile_number.png"></span>
+          <input type="number" ng-model="signupData.user_phone" required name="user_phone" ng-minlength="10" ng-maxlength="10" placeholder="Mobile No.">          
+        </label>
+        <span ng-show="submitted && signupForm.user_phone.$error.minlength" class="validation-login popup-forvalidation">Mobile no should be 10 digits.</span>
+        <span ng-show="submitted && signupForm.user_phone.$error.maxlength" class="validation-login popup-forvalidation">Mobile no should be 10 digits.</span>
+        <span ng-show="submitted && signupForm.user_phone.$error.required" class="validation-login popup-forvalidation">Please enter mobile no.</span>
+      </div>
+      <div class="password-vali">
+        <label class="item item-input">
+          <span class="input-label"><img class="pass-icon" width="20px" src="img/dob.png"></span>
+          <input type="date" required date-format="date | 'dd-mm-yyyy'" ng-model="signupData.user_dob" name="user_dob" placeholder="Date of Birth" onchange="this.className=(this.value!=''?'has-value':'')">
+        </label>
+        <span ng-show="submitted && signupForm.user_dob.$error.required" class="validation-login popup-forvalidation">Please enter DOB.</span>
+      </div>
+        <div class="password-vali">
+        <label class="item item-input">
+          <span class="input-label"><img class="pass-icon" width="20px" src="img/passwod_icon.png"></span>
+          <input type="password" required name="user_pwd" ng-model="signupData.user_pwd" placeholder="Password">
+        </label>
+        <span ng-show="submitted && signupForm.user_pwd.$error.required" class="validation-login popup-forvalidation">Please enter password</span>
+        </div>
+        <div class="password-vali">
+          <label class="item item-input">
+          <span class="input-label"><img class="pass-icon" width="20px" src="img/passwod_icon.png"></span>
+          <input type="password" id="password_c" name="password_c" ng-model="singupData.password_c" placeholder="Confirm Password" valid-password-c="signupData.user_pwd" required>
+        </label>
+        <span ng-show="submitted && signupForm.password_c.$error.noMatch" class="validation-login popup-forvalidation">Confirm password does not match.</span>
+        </div>
+        <div class="gender-section">
+        <h4>Gender</h4>
+        <div class="row">
+  <div class="col">
+    <ion-radio ng-model="signupData.user_gender" ng-value="1">Male</ion-radio>
+  </div>
+  <div class="col">
+    <ion-radio style="float: right;" ng-model="signupData.user_gender" ng-value="2">Female</ion-radio>
+  </div>
+   
+</div>  
+  
+  
+ 
+      </div>
+       
+        <label class="login_btn">
+          <button type="submit" ng-click="submitted = true" class="button button-block button-positive">Signup</button>
+        </label> 
+      </div>
+      <h4 class="register-pagelink">Already have an account?<a href="#/login"> Sign in here.</a></h4>
+      <br />
+    </form>
+  </ion-content>
+</ion-view>

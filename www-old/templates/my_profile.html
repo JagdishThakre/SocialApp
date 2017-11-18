@@ -1,0 +1,66 @@
+<ion-view view-title="My Profile" cache-view="false">
+  <ion-content>
+   <div class="add_q_box">
+
+         <div class="profile-pic-on-profile">
+         	<img class="pr-img-main profile-pic-img" ng-show="showMe == '' && profileData.user_profile == ''" src="img/default_user.png" width="200px;">
+					 <img class="pr-img-main profile-pic-img" ng-show="showMe == '' && profileData.user_profile !== ''" src="{{profileData.user_profile}}" width="200px;">
+					 <img ng-show="showMe != ''" class="pr-img-main profile-pic-img" ng-src="{{pathForImage(image)}}" width="200px;" >
+         	<div class="change-p-icon" ng-click="getImage()">
+         		<!--<input type="file" name="" >-->
+         		<img src="img/edit_ico.png" width="44px;">
+         	</div>
+         </div>
+			<form name="profileForm" id="profileForm" ng-submit="updateProfile(profileForm.$valid)" novalidate>	 
+     	<div class="list list-inset">
+				 <div class="user-name-vali">
+			  <label class="item item-input">
+			    <input type="text" placeholder="Full Name" name="user_fullname" required ng-model="profileData.user_fullname">
+			  </label>
+				<span ng-show="submitted && profileForm.user_fullname.$error.required" class="validation-login popup-forvalidation">Please enter full name</span>
+				</div>
+			  <label class="item item-input">
+			    <input type="email" required name="user_email" disabled="true" ng-model="profileData.user_email" placeholder="Email ID" >
+			  </label>
+				<div class="user-name-vali">
+					<label class="item item-input">
+						<input type="tel" ng-model="profileData.user_phone"  ng-minlength="10" ng-maxlength="10" placeholder="Mobile No.">
+					</label>
+					<span ng-show="submitted && profileForm.user_phone.$error" class="validation-login popup-forvalidation">Mobile no. should be 10 digits.</span>
+				</div>
+			  <label class="item item-input">
+			    <input type="date" date-format="date | 'dd-mm-yyyy'" ng-model="profileData.user_dob" placeholder="Date of Birth" class="{{profileData.user_dob!=null ? 'has-value' : ''}}" onchange="this.className=(this.value!=''?'has-value':'')">
+			  </label>
+			   <h4>Gender</h4>
+			   <div class="gender-box">
+			   	<div class="">
+                   <div class="row">
+  <div class="col">
+   <ion-radio ng-model="profileData.user_gender" ng-value="1">Male</ion-radio>
+  </div>
+  <div class="col">
+    <ion-radio ng-model="profileData.user_gender" ng-value="2">Female</ion-radio>
+  </div>
+   
+</div>
+
+                   
+				<!--   <div class="col">
+				  	 <ion-radio ng-model="profileData.user_gender" ng-value="1">Male</ion-radio>
+				  </div>
+				  <div class="col">
+				  	<ion-radio ng-model="profileData.user_gender" ng-value="2">Female</ion-radio>
+				  </div> -->
+				   
+				</div>
+			    
+			   </div>
+
+			  <button class="button button-dark" ng-disabled="!profileForm.$valid" ng-click="submitted = true" type="submit" style="width: 100%;background-color: #E44A30;color: #fff;">
+			  Update
+			</button>
+        </div>
+				</form>
+     </div>
+  </ion-content>
+</ion-view>
