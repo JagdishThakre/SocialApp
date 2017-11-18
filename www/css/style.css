@@ -904,5 +904,12 @@ span.back-text {
   border: 1px solid #ddd;
   padding: 10px;
 }
-
+.report-text{
+  /* position: absolute; */
+  left: 36px;
+  top: 100px;
+}
+.report-radio{
+  width:10%;
+}
 

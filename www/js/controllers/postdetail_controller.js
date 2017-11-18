@@ -174,18 +174,19 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
                 $ionicLoading.hide();
                 toastService.showToast(response.message);
             }
-        }, function
-        (error) {
-                $ionicLoading.hide();
-                console.log(error);
-                toastService.showToast(CONFIG.connerrmsg);
-            });
+        }, function (error) {
+            $ionicLoading.hide();
+            console.log(error);
+            toastService.showToast(CONFIG.connerrmsg);
+        });
     }
 
     /**Report popup */
-    $scope.reportPopUp = function() {
+    $scope.reportPopUp = function () {
+        var template = '<input type = "radio" value="abuse" name="report_type" ng-model = "postData.report_type" class="report-radio"><span class="report-text">Abuse</span><br />';
+        template += '<input type = "radio" value="other" name="report_type" ng-model = "postData.report_type" class="report-radio"><span class="report-text">Other</span>';
         $ionicPopup.show({
-            template: '<input type = "text" ng-model = "postData.reply">',
+            template: template,
             title: 'Reply',
             subTitle: '',
             scope: $scope,
@@ -195,18 +196,40 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
                     text: '<b>Done</b>',
                     type: 'button-positive',
                     onTap: function (e) {
-
-                        if (!$scope.postData.reply) {
+                        if (!$scope.postData.report_type) {
                             //don't allow the user to close unless he enters model...
                             e.preventDefault();
                         } else {
-                            $scope.postData.comment_id = id;
-                            $scope.comment_reply();
+                            $scope.postData.report_comment = $scope.postData.report_type;
+                            console.log("post_report", $scope.postData.report_type);
+                            $scope.post_report();
                             // return $scope.postData.model;
                         }
                     }
                 }
             ]
         });
+
+        /**Reply on comment */
+        $scope.post_report = function () {
+            $ionicLoading.show({
+                template: "Loading.."
+            });
+            dataManager.post(CONFIG.HTTP_HOSTStaging + 'postreport.php', $scope.postData).then(function (response) {
+                console.log(JSON.stringify(response))
+                if (response.status == 'true') {
+                    $scope.postData.post_report = '';
+                    // $scope.postDetail();
+                    $ionicLoading.hide();
+                } else {
+                    $ionicLoading.hide();
+                    toastService.showToast(response.message);
+                }
+            }, function (error) {
+                $ionicLoading.hide();
+                console.log(error);
+                toastService.showToast(CONFIG.connerrmsg);
+            });
+        }
     }
 });
