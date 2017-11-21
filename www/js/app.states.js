@@ -36,6 +36,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     }
                 }
             })
+            /**premium page state */
+            .state('app.premium', {
+                url: '/premium',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/premium.html',
+                        controller: 'faqCtrl'
+                    }
+                }
+            })
             /**Refer application to friend state */
             .state('app.refer_friends', {
                 url: '/refer_friends',
