@@ -37,7 +37,7 @@
 					<input type="radio" name="location_type" ng-model="locationtype" ng-click="checkLocation('enter')"  value="enter" >Enter Location
 					<label class="item item-input" ng-show="locationtype == 'enter'">
 						<input type="text" id="pac-input" placeholder="Location" name="formatted_address" location-suggestion location="location"
-						 value="{{location.formatted_address}}" ng-model="location.formatted_address" ng-change="getLocation()">
+						 value="{{location.formatted_address}}" ng-model="location.formatted_address" >
 						<!-- <input type="text" placeholder="Address" name="post_location" ng-model="addQueData.post_location"> -->
 					</label>
 					<span ng-show="submitted && addQueForm.formatted_address.$error.required" class="error-color">Please enter address</span>
