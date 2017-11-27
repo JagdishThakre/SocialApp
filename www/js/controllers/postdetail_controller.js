@@ -1,7 +1,7 @@
 //Profile controller 
 ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
     $ionicLoading, $localStorage, $rootScope,
-    dataManager, CONFIG,
+    dataManager, CONFIG, UserRetriever,
     toastService, $stateParams) {
     $scope.userid = localStorage.getItem('UserId');
     $scope.categories = [];
@@ -231,5 +231,26 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
                 toastService.showToast(CONFIG.connerrmsg);
             });
         }
+    }
+
+    $scope.users = UserRetriever.getusers("...");
+    $scope.users.then(function(data){
+      $scope.users = data;
+    });
+  
+    $scope.getusers = function(){
+      return $scope.users;
+    }
+  
+    $scope.doSomething = function(typedthings){
+      console.log("Do something like reload data with this: " + typedthings );
+      $scope.newusers = UserRetriever.getusers(typedthings);
+      $scope.newusers.then(function(data){
+        $scope.users = data;
+      });
+    }
+  
+    $scope.doSomethingElse = function(suggestion){
+      console.log("Suggestion selected: " + suggestion );
     }
 });

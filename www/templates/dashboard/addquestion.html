@@ -38,7 +38,6 @@
 					<label class="item item-input" ng-show="locationtype == 'enter'">
 						<input type="text" id="pac-input" placeholder="Location" name="formatted_address" location-suggestion location="location"
 						 value="{{location.formatted_address}}" ng-model="location.formatted_address" >
-						<!-- <input type="text" placeholder="Address" name="post_location" ng-model="addQueData.post_location"> -->
 					</label>
 					<span ng-show="submitted && addQueForm.formatted_address.$error.required" class="error-color">Please enter address</span>
 					<button class="button button-dark" style="width: 100%" type="submit" ng-click="submitted=true">

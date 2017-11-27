@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'starter.dnf','starter.daf', 
-'starter.dmf', 'ngCordova']);
+'starter.dmf', 'ngCordova', 'autocomplete']);
 
 app.run(function($ionicPlatform, $rootScope, $cordovaDevice, $localStorage, $ionicHistory, $state) {
   $ionicPlatform.ready(function() {

@@ -7,6 +7,7 @@
         <div class="text-rpo-in">
           <h4>{{detail.user_fullname}}</h4>
           <p>{{detail.post_datetime}}</p>
+          <autocomplete ng-model="result" attr-placeholder="type to search users..." click-activation="true" data="users" on-type="doSomething" on-select="doSomethingElse"></autocomplete>
         </div>
         <div class="like-dislike">
           <ul>
@@ -55,7 +56,7 @@
         <div class="col">
           <div class="more-op--btn-q-d">
             <ul>
-              <li ng-if="userid == detail.user_id">
+              <li ng-if="userid == detail.user_id" ng-click="">
                 <a href="javascript:;">Help</a>
               </li>
               <li>
@@ -108,7 +109,7 @@
     <div class="post-comment-input">
       <h4 class="add-cmt-head">Add Comment</h4>
       <label class="item item-input">
-        <textarea placeholder="Discription" ng-model="postData.comment" style="background-color: #EDF2F6;"></textarea>
+        <textarea placeholder="Comment" ng-model="postData.comment" style="background-color: #EDF2F6;"></textarea>
       </label>
       <button class="button button-dark q-d-submit-btn" type="button" ng-click="addComment()" style="width: 100%">
         Comment

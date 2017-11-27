@@ -1,55 +1,17 @@
 <ion-view view-title="Premium" cache-view="false">
   <ion-content>
-   <div class="premium-box">
-     <div class="list ">
- 
-
-  <div class="item item-body">
-    <h4 class="q-head"><a href="">This is a "Facebook" styled Card?</a></h4>
-    <p class="content-for-premium">
-      The header is created from a Thumbnail List item,
-      the content is from a card-body consisting of an image and paragraph text. The footer
-      consists of tabs, icons aligned left, within the card-footer.
-    </p>
-  </div>
-
-  <div class="item item-body">
-    <h4 class="q-head"><a href="">This is a "Facebook" styled Card?</a></h4>
-    <p class="content-for-premium">
-      The header is created from a Thumbnail List item,
-      the content is from a card-body consisting of an image and paragraph text. The footer
-      consists of tabs, icons aligned left, within the card-footer.
-    </p>
-  </div>
-
-  <div class="item item-body">
-    <h4 class="q-head"><a href="">This is a "Facebook" styled Card?</a></h4>
-    <p class="content-for-premium">
-      The header is created from a Thumbnail List item,
-      the content is from a card-body consisting of an image and paragraph text. The footer
-      consists of tabs, icons aligned left, within the card-footer.
-    </p>
-  </div>
-
-  <div class="item item-body">
-    <h4 class="q-head"><a href="">This is a "Facebook" styled Card?</a></h4>
-    <p class="content-for-premium">
-      The header is created from a Thumbnail List item,
-      the content is from a card-body consisting of an image and paragraph text. The footer
-      consists of tabs, icons aligned left, within the card-footer.
-    </p>
-  </div>
-
-  <div class="item item-body">
-    <h4 class="q-head"><a href="">This is a "Facebook" styled Card?</a></h4>
-    <p class="content-for-premium">
-      The header is created from a Thumbnail List item,
-      the content is from a card-body consisting of an image and paragraph text. The footer
-      consists of tabs, icons aligned left, within the card-footer.
-    </p>
-  </div>
-
-</div>	 
-   </div>
+    <div class="premium-box">
+      <div class="list ">
+        <div class="item item-body" ng-repeat="list in packages">
+          <h4 class="q-head">
+            <a href="javascript:;">{{list.days}}</a>
+          </h4>
+          <p class="content-for-premium">
+            {{list.description}}
+          </p>
+          <button button type="button" ng-click="getMembership(list.id)">Buy</button>
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

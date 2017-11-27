@@ -12,7 +12,7 @@ ctrl.controller('dashCtrl', function ($scope, $state, $ionicPopup,
                 template: "Loading.."
             });
            dataManager.post(CONFIG.HTTP_HOSTStaging +'postlist.php', $scope.postListData).then(function (response) {
-                console.log(JSON.stringify(response))
+                // console.log(JSON.stringify(response))
                 if (response.status == 'true') {
                     $scope.posts= response.data;
                     $ionicLoading.hide();

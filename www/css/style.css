@@ -913,3 +913,32 @@ span.back-text {
   width:10%;
 }
 
+
+/*Autocomplete CSS*/
+a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+a:hover,
+a:active {
+  outline: 0;
+}
+/* Generic classes */
+.hide { /* Hide stuff without resorting to display:none; */
+	visibility: hidden !important;
+	width: 0 !important;
+	height: 0 !important;
+	line-height: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.hide:after { /* Hide stuff without resorting to display:none; */
+	visibility: hidden !important;
+	width: 0 !important;
+	height: 0 !important;
+	line-height: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}

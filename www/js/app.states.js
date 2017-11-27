@@ -42,7 +42,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/premium.html',
-                        controller: 'faqCtrl'
+                        controller: 'premiumCtrl'
                     }
                 }
             })
