@@ -42,7 +42,7 @@ app.factory('UserRetriever', function($http, $q, $timeout){
         users=moreusers;
       else
         users=moreusers;
-  
+   
       $timeout(function(){
         userdata.resolve(users);
       },1000);

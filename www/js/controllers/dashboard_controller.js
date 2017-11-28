@@ -63,7 +63,6 @@ ctrl.controller('dashCtrl', function ($scope, $state, $ionicPopup,
                 template: "Loading.."
             });
             dataManager.post(CONFIG.HTTP_HOSTStaging +'postBookmark.php', $scope.likeData).then(function (response) {
-                console.log(JSON.stringify(response))
                 if (response.status == 'true') {
                     $scope.postList();
                     $ionicLoading.hide();

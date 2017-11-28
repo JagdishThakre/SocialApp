@@ -18,7 +18,8 @@
 			<div class="bookmark-and-share">
 				<ul>
 					<li ng-click="shareLink()"><a href="javascript:;"><img width="30px" src="img/send.png"></a></li>
-					<li ng-click="bookmark(1, list.id)"><a href="javascript:;"><img width="30px" src="img/bookmark_button.png"></a></li>
+					<li ng-if="list.is_bookmark == 2" ng-click="bookmark(1, list.id)"><a href="javascript:;"><img width="30px" src="img/bookmark_button.png"></a></li>
+					<li ng-if="list.is_bookmark == 1" ng-click="bookmark(2, list.id)"><a href="javascript:;"><img width="30px" src="img/bookmark_button.png"></a></li>
 				</ul>
 			</div>
     	</div>

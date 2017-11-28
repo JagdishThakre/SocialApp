@@ -72,7 +72,6 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
                 toastService.showToast(CONFIG.connerrmsg);
             });
     }
-
     $scope.deletePost = function () {
         $ionicPopup.confirm({
             title: 'Post',
@@ -84,7 +83,6 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
                 }
             });
     }
-
     /**Like comment */
     $scope.likeCmnt = function (id, type) {
         $scope.postData.comment_id = id;
@@ -107,7 +105,6 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
                 toastService.showToast(CONFIG.connerrmsg);
             });
     }
-
     /**Post Like unlike */
     $scope.likeUnlike = function (type) {
         $scope.postData.like_type = type;
@@ -130,7 +127,6 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
                 toastService.showToast(CONFIG.connerrmsg);
             });
     }
-
     /**Reply on comment */
     $scope.reply = function (id) {
         $ionicPopup.show({
@@ -158,7 +154,6 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
             ]
         });
     }
-
     /**Reply on comment */
     $scope.comment_reply = function () {
         $ionicLoading.show({
@@ -180,7 +175,6 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
             toastService.showToast(CONFIG.connerrmsg);
         });
     }
-
     /**Report popup */
     $scope.reportPopUp = function () {
         var template = '<input type = "radio" value="abuse" name="report_type" ng-model = "postData.report_type" class="report-radio"><span class="report-text">Abuse</span><br />';
@@ -232,24 +226,20 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
             });
         }
     }
-
     $scope.users = UserRetriever.getusers("...");
     $scope.users.then(function(data){
       $scope.users = data;
-    });
-  
+    });  
     $scope.getusers = function(){
       return $scope.users;
-    }
-  
+    }  
     $scope.doSomething = function(typedthings){
       console.log("Do something like reload data with this: " + typedthings );
       $scope.newusers = UserRetriever.getusers(typedthings);
       $scope.newusers.then(function(data){
         $scope.users = data;
       });
-    }
-  
+    }  
     $scope.doSomethingElse = function(suggestion){
       console.log("Suggestion selected: " + suggestion );
     }
