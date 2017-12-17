@@ -1,7 +1,7 @@
 <ion-view view-title="Add Question" cache-view="false">
-	<ion-content ng-init="selectCategory()">
-		<form name="addQueForm" id="addQueForm" ng-submit="addQue(addQueForm.$valid)" novalidate>
-			<div class="add_q_box">
+	<ion-content>
+		<div class="add_q_box" style="width:100%;">
+			<form name="addQueForm" id="addQueForm" ng-submit="addQue(addQueForm.$valid)" novalidate>
 				<div class="list list-inset">
 					<label class="item item-input">
 						<input type="text" placeholder="Title" name="post_title" ng-model="addQueData.post_title" required>
@@ -33,41 +33,61 @@
 						</select>
 					</label>
 					<span ng-show="submitted && addQueForm.post_priority.$error.required" class="error-color">Please select priority</span>
-					<input type="radio" name="location_type" ng-click="checkLocation('current')" value="current" ng-model="locationtype" checked>Current Location<br />
-					<input type="radio" name="location_type" ng-model="locationtype" ng-click="checkLocation('enter')"  value="enter" >Enter Location
-					<label class="item item-input" ng-show="locationtype == 'enter'">
-						<input type="text" id="pac-input" placeholder="Location" name="formatted_address" location-suggestion location="location"
-						 value="{{location.formatted_address}}" ng-model="location.formatted_address" >
+					<h4>Location</h4>
+					<div class="gender-box">
+						<div class="">
+							<div class="row">
+								<div class="col ">
+									<ion-radio name="location_type" ng-model="locationtype" ng-click="checkLocation('enter')" value="enter">Enter Location</ion-radio>
+								</div>
+								<div class="col">
+									<ion-radio name="location_type" ng-click="checkLocation('current');" value="current" ng-model="locationtype" checked>Current Location</ion-radio>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- <input type="radio" name="location_type" ng-click="checkLocation('current')" value="current" ng-model="locationtype" checked>Current Location
+					<br />
+					<input type="radio" name="location_type" ng-model="locationtype" ng-click="checkLocation('enter')" value="enter">Enter Location -->
+					<div ng-if="locationtype =='enter'">
+						<label class="item item-input" ng-if="locationtype =='enter'">
+							<input type="text" id="pac-input" placeholder="Location" required name="formatted_address" location-suggestion location="location"
+							 value="{{location.formatted_address}}" ng-model="location.formatted_address">
+						</label>
+						<span ng-show="submitted && addQueForm.formatted_address.$error.required" class="error-color">Please enter address.</span>
+					</div>
+					<div ng-if="locationtype =='current'">
+					<label class="item item-input" ng-if="locationtype =='current'">
+						<input type="text" placeholder="Location" name="current_location" required value="{{location.current_location}}" ng-model="location.current_location">
 					</label>
-					<span ng-show="submitted && addQueForm.formatted_address.$error.required" class="error-color">Please enter address</span>
+					<span ng-show="submitted && addQueForm.current_location.$error.required" class="error-color">Please enter address.</span>
+				</div>
 					<button class="button button-dark" style="width: 100%" type="submit" ng-click="submitted=true">
 						Submit
 					</button>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</ion-content>
-</ion-view>
-<script id="location.html" type="text/ng-template">
-	<ion-modal-view>
-		<ion-header-bar class="item-input-inset">
-			<label class="item-input-wrapper">
-				<i class="icon ion-ios7-search placeholder-icon"></i>
-				<input type="search" ng-model="search.query" placeholder="Search">
-			</label>
-		</ion-header-bar>
-		<ion-content>
-			<ion-list>
-				<ion-item ng-show="search.error">
-					{{search.error}}
-				</ion-item>
-				<ion-item ng-repeat="suggestion in search.suggestions" ng-click="choosePlace(suggestion)">
-					{{suggestion.description}}
-				</ion-item>
-			</ion-list>
-			<img src="https://developers.google.com/maps/documentation/places/images/powered-by-google-on-white.png" alt="" />
-		</ion-content>
-	</ion-modal-view>
-</script>
-</ion-content>
+	<script id="location.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar class="item-input-inset">
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios7-search placeholder-icon"></i>
+          <input type="search" ng-model="search.query" placeholder="Search">
+        </label>
+      </ion-header-bar>
+      <ion-content>
+        <ion-list>
+          <ion-item ng-show="search.error">
+            {{search.error}}
+          </ion-item>
+          <ion-item ng-repeat="suggestion in search.suggestions" ng-click="choosePlace(suggestion)">
+            {{suggestion.description}}
+          </ion-item>
+        </ion-list>
+        <img src="https://developers.google.com/maps/documentation/places/images/powered-by-google-on-white.png" alt="" />
+      </ion-content>
+    </ion-modal-view>
+  </script>
 </ion-view>

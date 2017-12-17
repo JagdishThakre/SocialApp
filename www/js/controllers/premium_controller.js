@@ -15,7 +15,7 @@ ctrl.controller('premiumCtrl', function ($scope, $state, $ionicPopup,
         dataManager.post(CONFIG.HTTP_HOSTStaging + 'packages.php', $scope.packagesData).then(function (response) {
             console.log(JSON.stringify(response))
             if (response.status == 'true') {
-                $ionicLoading.hide();
+                $ionicLoading.hide();                
                 $scope.packages = response.data;
             } else {
                 $ionicLoading.hide();
@@ -39,6 +39,7 @@ ctrl.controller('premiumCtrl', function ($scope, $state, $ionicPopup,
             console.log(JSON.stringify(response))
             if (response.status == 'true') {
                 $ionicLoading.hide();
+                $state.go('app.addquestion');
             } else {
                 $ionicLoading.hide();
                 toastService.showToast(response.message);

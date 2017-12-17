@@ -1,0 +1,119 @@
+<ion-view view-title="Question Detail" cache-view="false">
+  <ion-content ng-init="postDetail()">
+    <div class="q-deatils-box">
+      <div class="posted-user-pro">
+        <img ng-if="detail.user_profile==''" src="img/profile_ico.png">
+        <img ng-if="detail.user_profile!==''" src="{{detail.user_profile}}">
+        <div class="text-rpo-in">
+          <h4>{{detail.user_fullname}}</h4>
+          <p>{{detail.post_datetime}}</p>
+          <!-- <autocomplete ng-model="result" attr-placeholder="type to search users..." click-activation="true" data="users" on-type="doSomething" on-select="doSomethingElse"></autocomplete> -->
+        </div>
+        <div class="like-dislike">
+          <ul>
+            <li>
+              <a href="javascript:;" ng-click="likeUnlike(1)">
+                <img width="30px" src="img/like.png">
+                <span>{{detail.likes}}</span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;" ng-click="likeUnlike(2)">
+                <img width="25px" src="img/dislike.png">
+                <span>{{detail.unlike}}</span>
+              </a>
+            </li>
+            <!-- <li>
+              <a href="javascript:;">
+                <img width="30px" src="img/send.png">
+                <span>15</span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <img width="30px" src="img/bookmark_button.png">
+                <span>25</span>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="second-box-for-q-d">
+      <h4 class="q-head">{{detail.post_title}}</h4>
+      <p class="q-para">{{detail.post_description}}</p>
+      <div class="row">
+        <div class="col">
+          <div class="share-chat-btn-q-d">
+            <button class="button button-small send">
+              Send
+            </button>
+            <button class="button button-small button-stable chat">
+              Chat
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="more-op--btn-q-d">
+            <ul>
+              <li ng-if="userid == detail.user_id" ng-click="">
+                <a href="javascript:;">Help</a>
+              </li>
+              <li>
+                <a href="javascript:;" ng-click="reportPopUp()">Report </a>
+              </li>
+              <li ng-if="userid == detail.user_id">
+                <a href="javascript:;" ng-click="deletePost()">Remove </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-lest-q-d">
+      <div class="list">
+        <div class="item item-thumbnail-left" ng-repeat="cmnt in detail.comments">
+          <img width="50px" src="img/profile_ico.png" ng-if="cmnt.user_profile ==''">
+          <img width="50px" src="{{cmnt.user_profile}}" ng-if="cmnt.user_profile !==''">
+          <h2>{{cmnt.user_fullname}}</h2>
+          <p>{{cmnt.comment}}</p>
+          <div class="like-reply-box-c">
+            <ul>
+              <li>
+                <a href="javascript:;" ng-click="likeCmnt(cmnt.id, 1)">Like
+                  <span style="color: gray;">({{cmnt.likes}})</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;" ng-click="likeCmnt(cmnt.id, 2)">UnLike
+                  <span style="color: gray;">({{cmnt.unlikes}})</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;" ng-click="reply(cmnt.id)">Reply </a>
+              </li>
+            </ul>
+          </div>
+          <span class="date">{{cmnt.comment_before}}</span>
+          <div class="reply-box-comment-list list" ng-if="cmnt.replies">
+            <div class="reply item item-thumbnail-left" ng-repeat="replies in cmnt.replies">
+                <img width="50px" src="img/profile_ico.png" ng-if="replies.user_profile ==''">
+              <img width="50px" src="{{replies.user_profile}}" ng-if="replies.user_profile !==''">
+              <h2>{{replies.user_fullname}}</h2>
+              <p>{{replies.reply}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="post-comment-input">
+      <h4 class="add-cmt-head">Add Comment</h4>
+      <label class="item item-input">
+        <textarea placeholder="Comment" ng-model="postData.comment" style="background-color: #EDF2F6;"></textarea>
+      </label>
+      <button class="button button-dark q-d-submit-btn" type="button" ng-click="addComment()" style="width: 100%">
+        Comment
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

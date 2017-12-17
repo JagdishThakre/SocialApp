@@ -1,0 +1,23 @@
+<ion-view view-title="Bookmark" cache-view="false">
+	<ion-content>
+		<div class="dashboard-wrap">
+			<div class="q-box" ng-repeat="list in bookmarks">
+				<div class="left-q-sec">
+					<div ng-click="detail(list.post_id)">
+						<h4>{{list.post_title}}</h4>
+						<p class="small-desk">{{list.post_description}}</p>
+						<div class="posted-user-pro">
+							<img ng-if="list.user_profile ==''" src="img/profile_ico.png">
+							<img ng-if="list.user_profile !==''" src="{{list.user_profile}}">
+							<div class="text-rpo-in">
+								<h4>{{list.user_fullname}}</h4>
+								<!-- <p>{{list.post_datetime}}</p> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	</ion-content>
+</ion-view>

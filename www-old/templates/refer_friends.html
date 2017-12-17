@@ -1,0 +1,20 @@
+<ion-view view-title="Refer a Friends">
+  <ion-content class="referral-wrap">
+     <div class="top-banner-img">
+     	<h3>Invite your friends</h3>
+     	<p>Share your code with friends and get point</p>
+     </div>
+
+     <h4 style="text-align: center;font-weight: lighter;font-family: 'Quicksand', sans-serif !important;margin-top: 30px;">Your Referral code is</h4>
+     <p class="code">{{user_refer_code |  uppercase}}</p>
+
+     <h4 style="text-align: center;font-weight: lighter;font-family: 'Quicksand', sans-serif !important;margin-top: 30px;">Share on</h4>
+
+     <div class="social_icon_box">
+       <ul>
+         <li><a href="javascript:;" ng-click="refer('fb')"><img src="img/fb_icon.png"></a></li>
+         <li><a href="javascript:;" ng-click="refer('whatsApp')"><img src="img/WhatsApp-icon.png"></a></li>
+       </ul>
+     </div>
+  </ion-content>
+</ion-view>

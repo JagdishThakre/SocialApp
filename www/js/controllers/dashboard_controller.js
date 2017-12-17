@@ -5,17 +5,33 @@ ctrl.controller('dashCtrl', function ($scope, $state, $ionicPopup,
             toastService, $cordovaSocialSharing) {
         $scope.posts = [];
         $scope.postListData = {};
+        $scope.postListData.pageno = 0;
         $scope.postListData.user_id = $localStorage.User.id;
         $scope.postListData.user_auth_token = $localStorage.User.user_auth_token;
         $scope.postList = function () {
-            $ionicLoading.show({
-                template: "Loading.."
-            });
+            if($scope.postListData.pageno ==0){
+                $ionicLoading.show({
+                    template: "Loading.."
+                });
+            }
            dataManager.post(CONFIG.HTTP_HOSTStaging +'postlist.php', $scope.postListData).then(function (response) {
                 // console.log(JSON.stringify(response))
                 if (response.status == 'true') {
-                    $scope.posts= response.data;
-                    $ionicLoading.hide();
+                    if($scope.postListData.pageno ==0){
+                        $scope.posts= response.data;
+                        $ionicLoading.hide();
+                        $scope.postListData.pageno +=1;
+                    } else {
+                        $scope.postListData.pageno +=1;
+                        for(i=0; i<response.data.length;i++) {
+                            $scope.posts.push(response.data[i]);
+                        }
+                        if(response.data.length == 0){
+                            $scope.noMoreItemsAvailable = true;
+                        }
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
+                    } 
+                    
                 } else {
                     $ionicLoading.hide();
                     toastService.showToast(response.message);
@@ -27,9 +43,16 @@ ctrl.controller('dashCtrl', function ($scope, $state, $ionicPopup,
                 toastService.showToast(CONFIG.connerrmsg);
             });
         }
+        
         $ionicPlatform.ready(function() {
             $scope.postList();
         });
+
+        $scope.loadMore = function() {
+            $scope.postList();
+            // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }
+        $scope.noMoreItemsAvailable = false;
         $scope.likeData = {};
         $scope.likeData.user_id = $localStorage.User.id;
         $scope.likeData.user_auth_token = $localStorage.User.user_auth_token;
@@ -65,6 +88,7 @@ ctrl.controller('dashCtrl', function ($scope, $state, $ionicPopup,
             dataManager.post(CONFIG.HTTP_HOSTStaging +'postBookmark.php', $scope.likeData).then(function (response) {
                 if (response.status == 'true') {
                     $scope.postList();
+                    toastService.showToast(response.message);
                     $ionicLoading.hide();
                 } else {
                     $ionicLoading.hide();
@@ -98,5 +122,9 @@ ctrl.controller('dashCtrl', function ($scope, $state, $ionicPopup,
             $state.go("app.postDetail", {post_id: id});
             // $location.path("/postDetail/"+id);
         }
+
+        /*$scope.goToAddQue = function(){
+            $state.go('app.addquestion');
+        }*/
 })
 ;

@@ -60,7 +60,7 @@
                 <a href="javascript:;">Help</a>
               </li>
               <li>
-                <a href="javascript:;" ng-click="reportPopUp()">Report </a>
+                <a href="javascript:;" ng-if="userid !== detail.user_id" ng-click="reportPopUp()">Report </a>
               </li>
               <li ng-if="userid == detail.user_id">
                 <a href="javascript:;" ng-click="deletePost()">Remove </a>
@@ -92,15 +92,26 @@
               <li>
                 <a href="javascript:;" ng-click="reply(cmnt.id)">Reply </a>
               </li>
+              <li ng-if="userid == cmnt.user_id">
+                <a href="javascript:;" ng-click="deleteCmnt(cmnt.id)">Remove Comment </a>
+              </li>
             </ul>
           </div>
           <span class="date">{{cmnt.comment_before}}</span>
           <div class="reply-box-comment-list list" ng-if="cmnt.replies">
             <div class="reply item item-thumbnail-left" ng-repeat="replies in cmnt.replies">
-                <img width="50px" src="img/profile_ico.png" ng-if="replies.user_profile ==''">
+              <img width="50px" src="img/profile_ico.png" ng-if="replies.user_profile ==''">
               <img width="50px" src="{{replies.user_profile}}" ng-if="replies.user_profile !==''">
               <h2>{{replies.user_fullname}}</h2>
               <p>{{replies.reply}}</p>
+              <div class="like-reply-box-c">
+                <ul>
+                  <li ng-if="userid == replies.user_id">
+                    <a href="javascript:;" ng-click="deleteReply(replies.id)">Remove Reply </a>
+                  </li>
+                </ul>
+              </div>
+              <span class="date">{{replies.reply_before}}</span>
             </div>
           </div>
         </div>

@@ -1,17 +1,29 @@
 <ion-view view-title="Premium" cache-view="false">
   <ion-content>
-    <div class="premium-box">
-      <div class="list ">
-        <div class="item item-body" ng-repeat="list in packages">
-          <h4 class="q-head">
-            <a href="javascript:;">{{list.days}}</a>
-          </h4>
-          <p class="content-for-premium">
-            {{list.description}}
-          </p>
-          <button button type="button" ng-click="getMembership(list.id)">Buy</button>
+    <ion-slides options="options" slider="data.slider">
+      <ion-slide-page ng-repeat="package in packages">
+        <div class="plane-box">
+          <div class="plane-boxinner">
+            <h4>{{package.title}}</h4>
+            <img class="car-img" src="img/car.png">
+            <h3>&nbsp;</h3>
+            <img class="discount-img" src="img/discount.png">
+            <p>Pay Flat &#8377; {{package.price}}</p>
+            <p>&nbsp;</p>
+            <div class="final-rate">
+              <h5>
+                <small>&#8377; {{package.days}}</small></h5>
+              <p>Day's</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+        <ul class="terms-con-plane">
+          <li>{{package.description}}</li>
+        </ul>
+        <div class="bar bar-footer pay-button-footer" ng-click="getMembership(package.id)">
+          <button class="button  foter-pay-palne" type="button" >Buy this membership</button>
+        </div>
+         </ion-slides>
+      </ion-slide-page>
   </ion-content>
 </ion-view>

@@ -72,6 +72,46 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
                 toastService.showToast(CONFIG.connerrmsg);
             });
     }
+    /**Remove Comment*/
+    $scope.removeCmnt = function (id) {
+        $ionicLoading.show();
+        $scope.postData.comment_id = id
+        dataManager.post(CONFIG.HTTP_HOSTStaging + 'delete_comment.php', $scope.postData).then(function (response) {
+            console.log(JSON.stringify(response))
+            if (response.status == 'true') {
+                $ionicLoading.hide();
+                $scope.postDetail();
+            } else {
+                $ionicLoading.hide();
+                toastService.showToast(response.message);
+            }
+        }, function
+        (error) {
+                $ionicLoading.hide();
+                console.log(error);
+                toastService.showToast(CONFIG.connerrmsg);
+            });
+    }
+    /**Remove Reply*/
+    $scope.removeReply = function (id) {
+        $ionicLoading.show();
+        $scope.postData.reply_id = id;
+        dataManager.post(CONFIG.HTTP_HOSTStaging + 'delete_cmnt_reply.php', $scope.postData).then(function (response) {
+            console.log(JSON.stringify(response))
+            if (response.status == 'true') {
+                $ionicLoading.hide();
+                $scope.postDetail();
+            } else {
+                $ionicLoading.hide();
+                toastService.showToast(response.message);
+            }
+        }, function
+        (error) {
+                $ionicLoading.hide();
+                console.log(error);
+                toastService.showToast(CONFIG.connerrmsg);
+            });
+    }
     $scope.deletePost = function () {
         $ionicPopup.confirm({
             title: 'Post',
@@ -80,6 +120,27 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
             .then(function (result) {
                 if (result) {
                     $scope.removePost();
+                }
+            });
+    }
+    $scope.deleteCmnt = function (id) {
+        $ionicPopup.confirm({
+            title: 'Comment',
+            template: 'Are you sure you want to remove this comment?'
+        }).then(function (result) {
+            if (result) {
+                $scope.removeCmnt(id);
+            }
+        });
+    }
+    $scope.deleteReply = function (id) {
+        $ionicPopup.confirm({
+            title: 'Reply',
+            template: 'Are you sure you want to remove this reply?'
+        })
+            .then(function (result) {
+                if (result) {
+                    $scope.removeReply(id);
                 }
             });
     }
@@ -118,7 +179,7 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
                 $ionicLoading.hide();
             } else {
                 $ionicLoading.hide();
-                toastService.showToast(response.message);
+                //toastService.showToast(response.message);
             }
         }, function
         (error) {
@@ -130,7 +191,7 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
     /**Reply on comment */
     $scope.reply = function (id) {
         $ionicPopup.show({
-            template: '<input type = "text" ng-model = "postData.reply">',
+            template: '<input type = "text" ng-model = "postData.reply"> ',
             title: 'Reply',
             subTitle: '',
             scope: $scope,
@@ -177,11 +238,11 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
     }
     /**Report popup */
     $scope.reportPopUp = function () {
-        var template = '<input type = "radio" value="abuse" name="report_type" ng-model = "postData.report_type" class="report-radio"><span class="report-text">Abuse</span><br />';
-        template += '<input type = "radio" value="other" name="report_type" ng-model = "postData.report_type" class="report-radio"><span class="report-text">Other</span>';
+        var template = '<div class="report-box-main"><input type = "radio" value="abuse" name="report_type" ng-model = "postData.report_type" class="report-radio"><span class="report-text">Abuse</span></div>';
+        template += '<div class="report-box-main"><input type = "radio" value="other" name="report_type" ng-model = "postData.report_type" class="report-radio"><span class="report-text">Other</span><div>';
         $ionicPopup.show({
             template: template,
-            title: 'Reply',
+            title: 'Report',
             subTitle: '',
             scope: $scope,
 
@@ -226,21 +287,22 @@ ctrl.controller('postDeatilCtrl', function ($scope, $state, $ionicPopup,
             });
         }
     }
+
     $scope.users = UserRetriever.getusers("...");
-    $scope.users.then(function(data){
-      $scope.users = data;
-    });  
-    $scope.getusers = function(){
-      return $scope.users;
-    }  
-    $scope.doSomething = function(typedthings){
-      console.log("Do something like reload data with this: " + typedthings );
-      $scope.newusers = UserRetriever.getusers(typedthings);
-      $scope.newusers.then(function(data){
+    $scope.users.then(function (data) {
         $scope.users = data;
-      });
-    }  
-    $scope.doSomethingElse = function(suggestion){
-      console.log("Suggestion selected: " + suggestion );
+    });
+    $scope.getusers = function () {
+        return $scope.users;
+    }
+    $scope.doSomething = function (typedthings) {
+        console.log("Do something like reload data with this: " + typedthings);
+        $scope.newusers = UserRetriever.getusers(typedthings);
+        $scope.newusers.then(function (data) {
+            $scope.users = data;
+        });
+    }
+    $scope.doSomethingElse = function (suggestion) {
+        console.log("Suggestion selected: " + suggestion);
     }
 });

@@ -1,0 +1,84 @@
+<ion-view view-title="Premium" cache-view="false">
+  <ion-content>
+    <ion-slides options="data.sliderOptions" slider="data.sliderDelegate">
+      <ion-slide-page ng-repeat="package in packages">
+        <div class="plane-box">
+          <div class="plane-boxinner">
+            <h4>{{package.title}}</h4>
+            <img class="car-img" src="img/car.png">
+            <h3>&nbsp;</h3>
+            <img class="discount-img" src="img/discount.png">
+            <p>Pay Flat &#8377; {{package.price}}</p>
+            <p>&nbsp;</p>
+            <div class="final-rate">
+              <h5>
+                <small>&#8377; {{package.days}}</small></h5>
+              <p>Day's</p>
+            </div>
+          </div>
+        </div>
+        <ul class="terms-con-plane">
+          <li>{{package.description}}</li>
+          <!-- <li>Micro fare apply beyond 4 KM.</li>
+          <li>Toll charges extra.</li>
+          <li>
+            <a href="">View terms & conditions.</a>
+          </li> -->
+        </ul>
+        <div class="bar bar-footer pay-button-footer" ng-click="getMembership(package.id)">
+          <button class="button  foter-pay-palne" type="button" >Buy This Pass</button>
+        </div>
+      </ion-slide-page>
+      <!-- <ion-slide-page>
+        <div class="plane-box">
+          <div class="plane-boxinner">
+            <h4>Share Pass</h4>
+            <img class="car-img" src="img/car.png">
+            <h3>3 Rides</h3>
+            <img class="discount-img" src="img/discount.png">
+            <p>Pay Flat &#8377; 40</p>
+            <p>Per Ride</p>
+            <div class="final-rate">
+              <h5>
+                <small>&#8377; 100</small>&#8377; 50</h5>
+              <p>Per Month</p>
+            </div>
+          </div>
+        </div>
+        <ul class="terms-con-plane">
+          <li>Flat fare is applicable up to 4 KM.</li>
+          <li>Micro fare apply beyond 4 KM.</li>
+          <li>Toll charges extra.</li>
+          <li>
+            <a href="">View terms & conditions.</a>
+          </li>
+        </ul>
+      </ion-slide-page>
+      <ion-slide-page>
+        <div class="plane-box">
+          <div class="plane-boxinner">
+            <h4>Share Pass</h4>
+            <img class="car-img" src="img/car.png">
+            <h3>2 Rides</h3>
+            <img class="discount-img" src="img/discount.png">
+            <p>Pay Flat &#8377; 15</p>
+            <p>Per Ride</p>
+            <div class="final-rate">
+              <h5>
+                <small>&#8377; 60</small>&#8377; 50</h5>
+              <p>Per Month</p>
+            </div>
+          </div>
+        </div>
+        <ul class="terms-con-plane">
+          <li>Flat fare is applicable up to 4 KM.</li>
+          <li>Micro fare apply beyond 4 KM.</li>
+          <li>Toll charges extra.</li>
+          <li>
+            <a href="">View terms & conditions.</a>
+          </li>
+        </ul>
+      </ion-slide-page> -->
+    </ion-slides>    
+  </ion-content>
+</ion-view>

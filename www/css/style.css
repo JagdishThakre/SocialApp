@@ -904,41 +904,183 @@ span.back-text {
   border: 1px solid #ddd;
   padding: 10px;
 }
-.report-text{
-  /* position: absolute; */
-  left: 36px;
-  top: 100px;
-}
-.report-radio{
-  width:10%;
-}
 
 
-/*Autocomplete CSS*/
-a:focus {
-  outline: thin dotted #333;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+.footer-button {
+  height: 50px;
+  border: none;
+  margin: auto;
+  display: inline-block;
+  border-radius: 0;
+  color: #fff;
+  position: fixed !important;
+  bottom: 0px;
+  left: 10px;
+  text-align: center;
+  width: 50%;
+  background-color: #db0000;
+  float: left;
 }
-a:hover,
-a:active {
-  outline: 0;
-}
-/* Generic classes */
-.hide { /* Hide stuff without resorting to display:none; */
-	visibility: hidden !important;
-	width: 0 !important;
-	height: 0 !important;
-	line-height: 0 !important;
-	padding: 0 !important;
-	margin: 0 !important;
+.buttons-box-premiumdetil .button.cencel {
+  width: 45%;
+  border: 1px solid #eee;
+  color: red;
 }
 
-.hide:after { /* Hide stuff without resorting to display:none; */
-	visibility: hidden !important;
-	width: 0 !important;
-	height: 0 !important;
-	line-height: 0 !important;
-	padding: 0 !important;
-	margin: 0 !important;
+.buttons-box-premiumdetil .button.cencel {
+  width: 45%;
+  border: 1px solid #eee;
+  color: red;
+}
+
+.buttons-box-premiumdetil .button.payment{
+  width: 45%;
+  border: 1px solid #eee;
+  color: #fff;
+  background-color: red;
+}
+.footer-button a {
+  color: #fff;
+  text-decoration: none;
+}
+.plane-box {
+  background-color: lightgray;
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.plane-boxinner {
+  border: 1px solid darkgoldenrod;
+  border-radius: 5px;
+  position: relative;
+}
+
+.plane-boxinner h4 {
+  color: #E44A30 !important;
+  padding: 5px 10px;
+  border-bottom: 1px solid darkgoldenrod;
+  margin-bottom: 0;
+  padding-bottom: 12px;
+  font-weight: normal;
+}
+
+.plane-boxinner .car-img {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  width: 50px;
+}
+.plane-boxinner h3 {
+  padding: 0 10px;
+  margin-top: 8px;
+}
+.discount-img {
+  position: absolute;
+  width: 50px !important;
+  right: 10px;
+  top: 42px;
+}
+.plane-boxinner h3 {
+  padding: 0 10px;
+  margin: 10px 0;
+}
+.plane-boxinner p {
+  padding: 0 10px;
+  margin-bottom: 0px;
+}
+.final-rate h5 {
+  margin: 0;
+  padding: 0 10px;
+}
+.final-rate {
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+}
+.terms-con-plane {
+  width: 73%;
+  margin: 50px auto;
+  list-style: unset;
+}
+.terms-con-plane li {
+  padding: 5px 0;
+}
+.terms-con-plane li a {
+  color: red;
+  text-decoration: none;
+}
+
+.button.foter-pay-palne {
+ width: 100%;
+background-color: #2b2b2b;
+height: 44px;
+color: #fff;
+margin: 0;
+border-radius: 0;
+font-size: 16px;
+}
+.bar.bar-footer.pay-button-footer {
+  padding: 0;
+  position: fixed;
+}
+
+.popup-body input[type="radio"] {
+  height: auto;
+border: none;
+padding: 0;
+width: 40px;
+}
+
+ .swiper-container-horizontal > .swiper-pagination {
+  bottom: 60px;
+  left: 0;
+  width: 100%;
+}
+
+.report-box-main {
+  font-size: 15px;
+  color: gray;
+  padding: 5px;
+  font-weight: normal;
+  background-color: #eee;
+  margin-bottom: 2px;
+}
+.popup-container .popup{
+  background-color: #fff!important;
+}
+.transparent {
+  background: transparent !important;
+}
+.image-modal {
+  width: 100% !important;
+  height: 100%;
+  top: 0 !important;
+  left: 0 !important;
+}
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 100%;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+/* Fix modal backdrop for smaller devices */
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
 }

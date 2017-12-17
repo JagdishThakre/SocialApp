@@ -6,12 +6,15 @@ ctrl.controller('queCtrl', function ($scope, $state, $ionicPopup,
     $scope.categories = [];
     $scope.addQueData = {};
     $scope.location = {};
-    $scope.locationtype = 'current';
     $scope.addQueData.user_auth_token = $localStorage.User.user_auth_token;
     $scope.addQueData.user_id = $localStorage.User.id;
     $scope.addQueData.lat = '';
     $scope.addQueData.long = '';
-
+    var que = localStorage.getItem('question');
+    if(que){
+        $scope.addQueData = JSON.parse(que);
+    }
+    $scope.locationtype = 'current';
     function showResult(result) {
         console.log("lat: " + result.geometry.location.lat() + ' lng:' + result.geometry.location.lng());
         $scope.addQueData.lat = result.geometry.location.lat();
@@ -53,6 +56,7 @@ ctrl.controller('queCtrl', function ($scope, $state, $ionicPopup,
                         if (data[0] != null) {
                             console.log("data[0].formatted_address ", data[0].formatted_address);
                             $scope.addQueData.post_location = data[0].formatted_address;
+                            $scope.location.current_location = data[0].formatted_address;
                             // alert("address is: " + data[0].formatted_address);
                         } else {
                             $scope.addQueData.post_location = '';
@@ -83,10 +87,14 @@ ctrl.controller('queCtrl', function ($scope, $state, $ionicPopup,
             $ionicLoading.show();
             dataManager.post(CONFIG.HTTP_HOSTStaging + 'addque.php', $scope.addQueData).then(function (response) {
                 console.log(JSON.stringify(response))
-                if (response.status == 'true') {
+                if (response.code == 200) {
                     $ionicLoading.hide();
+                    localStorage.setItem('question', '');
                     toastService.showToast(response.message);
                     $rootScope.goBack('app.dashboard');
+                } else if(response.code == 201) {
+                    localStorage.setItem('question', JSON.stringify($scope.addQueData));
+                    $state.go('app.premium');
                 } else {
                     $ionicLoading.hide();
                     toastService.showToast(response.message);
@@ -121,7 +129,11 @@ ctrl.controller('queCtrl', function ($scope, $state, $ionicPopup,
             });
     }
 
+    $scope.selectCategory();
     $scope.checkLocation = function(location){
+        if(location === 'current') {
+            $scope.lookupLatLng();
+        }
         $scope.locationtype = location;
     }
 
@@ -131,8 +143,5 @@ ctrl.controller('queCtrl', function ($scope, $state, $ionicPopup,
         getLatitudeLongitude(showResult, $scope.addQueData.post_location);
     }
     
-    $scope.$watch('location', function() {
-        alert('hey, myVar has changed!');
-    });
 })
     ;

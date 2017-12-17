@@ -96,6 +96,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     }
                 }
             })
+            /**Bookmark page state */
+            .state('app.bookmark', {
+                url: '/bookmark',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/bookmark.html',
+                        controller: 'bookmarkCtrl'
+                    }
+                }
+            })
             .state('app.postDetail', {
                 url: '/postDetail/:post_id',
                 views: {
