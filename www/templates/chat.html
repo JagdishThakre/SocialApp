@@ -1,0 +1,17 @@
+<ion-view view-title="Chat" ng-init="chatUsers()" cache-view="false">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon ion-arrow-left-c headerbuttonStaff" ng-click="goback()"></button>
+  </ion-nav-buttons>
+  <ion-content padding class="">
+    <div class="Chatlist-wrap">
+      <div class="list">
+        <a class="item item-avatar" href="#/app/chatdetail/{{user.id}}/{{user.user_fullname}}/chats" ng-repeat="user in users">
+          <img ng-if="user.user_profile !=''" src="{{user.user_profile}}">
+          <img ng-if="user.user_profile ==''" src="img/default_user.png">
+          <h2>{{user.user_fullname}}</h2>
+          <p>{{user.lastmsg}}</p>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

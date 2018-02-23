@@ -1,0 +1,118 @@
+<ion-side-menus enable-menu-with-back-views="false" cache-view="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <!-- <ion-nav-back-button>
+      </ion-nav-back-button> -->
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear {{menuCollapsed}}" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <div style="padding-top: 5px;
+        padding-right: 7px;
+        font-size: 25px;
+        color: #fff;" menu-toggle="right">
+          <i class="button-for-filter ion-funnel"></i>
+        </div>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+    <ion-content class="menu-con">
+      <div class="profile_pic_side_menu">
+        <img src="{{userProfile}}" class="profile-pic-img">
+        <h4>{{user_fullname}}</h4>
+        <p>{{user_email}}</p>
+      </div>
+      <ion-list>
+        <ion-item menu-close href="#/rightmenu/dashboard">
+          <img src="img/home.png" width="30px;" />
+          <span>Dashboard</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/my_profile">
+          <img src="img/my_profile.png" width="30px;" />
+          <span>My Profile</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/chatMsg">
+          <img src="img/chat.png" width="30px;" />
+          <span>chat</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/profile">
+          <img src="img/bookmark.png" width="30px;" />
+          <span>Profile</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/premium">
+          <img src="img/premium.png" width="30px;" />
+          <span>Premium Page</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/change_password" ng-if="changePwd == 1">
+          <img src="img/password.png" width="30px;" />
+          <span>Change Password</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/refer_friends">
+          <img src="img/refer_a_frind.png" width="30px;" />
+          <span>Refer a Friends</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/faq">
+          <img src="img/faq.png" width="30px;" />
+          <span>FAQ</span>
+        </ion-item>
+        <ion-item menu-close ng-click="logout()" style="padding:0;">
+          <div style="padding: 5px 49px 5px 16px!important;">
+            <img src="img/logout.png" width="30px;" />
+            <span>Logout</span>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+  <ion-side-menu ng-controller="dashCtrl" side="right">
+    <ion-header-bar class="bar-stable">
+      <h1 style="text-align: center;" class="title">Filter</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+        <mh-select header-text="Select Priority" ng-model="postListData.post_priority" value="val.priority" text="priorities_text_multiple" items="priorities" multi-select="true">
+        </mh-select>
+        <mh-select header-text="Select Category" value="val.cateory" text="category_text_multiple" items="categories" multi-select="true">
+        </mh-select>
+        <mh-select header-text="Select City" value="val.city" text="city_text_multiple" items="cities" multi-select="true">
+        </mh-select>
+        <p style="padding-left: 10px;padding-top: 20px;">Distance</p>
+        <div class="item range range-positive pricerange-filter">
+          <i class="">0</i>
+          <input type="range" name="postListData.distance" min="0" max="500" value="2">
+          <i class="">500</i>
+        </div>
+      </div>
+      <button menu-close class="button button-assertive filterbtn" ng-click="filter()">
+        Apply
+      </button>
+    </ion-content>
+  </ion-side-menu>
+  <script id="mh-select-items.html" type="text/ng-template">
+    <ion-modal-view class="modal mh-select-modal">
+      <ion-header-bar class="bar-positive">
+        <h1 class="title">{{headerText}}</h1>
+        <button ng-if="multiSelect" ng-click="validate()" class="button button-clear">Done</button>
+      </ion-header-bar>
+      <ion-content>
+        <div class="list">
+          <!-- Multi select -->
+          <!--Using raw html, easier to edit-->
+          <li class="item item-checkbox mh-select-multi" ng-repeat="item in items" ng-if="multiSelect">
+            {{item.text}}
+            <label class="checkbox">
+              <input type="checkbox" ng-checked="item.checked" ng-model="item.checked">
+            </label>
+          </li>            
+          <!-- Single select -->
+          <label ng-repeat="item in items" ng-if="!multiSelect" class="item item-text-wrap" ng-click='validateSingle(item)'>
+            {{item.text}}
+          </label>
+        </div>
+      </ion-content>
+    </ion-modal-view>
+  </script>
+</ion-side-menus>

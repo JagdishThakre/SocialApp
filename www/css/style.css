@@ -38,7 +38,7 @@ ion-header-bar{
 }
 .top_logo img{
   width: 200px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .lgoin-text-h4 {
@@ -68,6 +68,25 @@ ion-header-bar{
   clear: both;
   margin: auto;
   width: 80%;
+  font-family: 'Quicksand', sans-serif !important;
+}
+
+.change-pass-from-box{
+  width: 95%!important;
+}
+
+.change-pass-from-box .item-input {
+  -moz-box-align: center;
+  align-items: center;
+  background-color: #edf2f6;
+  border-radius: 0px;
+  display: flex;
+  height: auto!important;
+  margin-bottom: 25px;
+  overflow: hidden;
+  padding: 6px 0 5px 8px;
+  padding-left: 0!important;
+  position: relative;
   font-family: 'Quicksand', sans-serif !important;
 }
 
@@ -355,7 +374,7 @@ input[disabled] {
   color: #fff;
   position: fixed !important;
   bottom: 30px;
-  left: 65%;
+  right: 30px;
   text-align: center;
   background-color: transparent;
 }
@@ -364,6 +383,7 @@ input[disabled] {
   background-color: #2B2B2B;
   font-family: 'Quicksand', sans-serif !important;
   color: #fff;
+  border-color: #4c4c4c;
 }
 
 .menu-con .item-complex .item-content {
@@ -394,20 +414,35 @@ input[disabled] {
     width: 100%;
     margin: auto;
 }
+
+.total-user-head {
+  font-size: 16px;
+  color: red;
+  font-weight: normal;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #eee;
+}
 .change-pass-box input {
   padding-left: 10px;
   border-left: 1px solid #eee;
+  border-radius: 0px !important;
 }
 
 .change-pass-box .item i img {
   margin-right: 10px;
 }
-
-
+.item.item-input.email-address-profile input {
+  background-color: #EDF2F6 !important;
+}
+.item.item-input.email-address-profile {
+  background-color: #EDF2F6 !important;
+}
 
 .add_q_box .item.item-input {
-  margin-bottom: 12px;
-  background-color: #EDF2F6;
+ margin-bottom: 12px;
+background-color: #fff;
+border-radius: 0px !important;
 }
 
 .add_q_box {
@@ -431,7 +466,7 @@ input[disabled] {
   padding: 0 48px 0 16px;
   max-width: 65%;
   border: none;
-  background: #EDF2F6;
+  /*background: #EDF2F6;*/
   color: #333;
   text-indent: .01px;
   text-overflow: '';
@@ -556,7 +591,7 @@ height: 44px;
 .left-q-sec {
   width: 80%;
   border-right: none;
-  padding: 0 10px;
+  padding: 0 5px;
   margin: 0;
   float: left;
 }
@@ -564,26 +599,46 @@ height: 44px;
 .right-q-sec {
   width: 20%;
   float: left;
-  padding: 0 10px;
+  padding: 0 5px;
   margin: 0;
   border-left: 1px solid #ddd;
 }
 .left-q-sec h4 {
   font-size: 14px;
   font-weight: normal;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  min-height: auto;
+  max-height: 18px;
+  overflow: hidden;
+  padding-top: 0px;
+  margin-top: 8px;
+  word-break: break-all;
+ 
 }
 
 .left-q-sec .small-desk {
-  height: 40px;
+  max-height: 40px;
   overflow: hidden;
   color: gray;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.drop-arrow-select.ion-ios-arrow-down {
+ position: absolute;
+top: 30%;
+right: 15px;
+z-index: 9999999;
+color: red;
+cursor: pointer;
 }
 
+.mul-select-item{
+  position: relative;
+}
 .posted-user-pro{
   position: relative;
 }
-.posted-user-pro img {
+.user-cmt-profile{
     width: 35px;
     border-radius: 100px;
     height: 35px;
@@ -591,8 +646,8 @@ height: 44px;
 .text-rpo-in {
   position: absolute;
   bottom: -7px;
-  left: 48px;
-  height: 56px;
+  left: 44px;
+  height: 52px;
 }
 
 .text-rpo-in h4 {
@@ -608,15 +663,15 @@ height: 44px;
   float: left;
   margin-left: 10px;
 }
-
 .bookmark-and-share {
   position: absolute;
-  top: 72%;
+  bottom: 6px;
   right: 25%;
 }
 
+ 
 .right-q-sec ul li {
-  padding: 10px 0;
+  padding: 5px 0;
 }
 
 .right-q-sec ul li span {
@@ -633,8 +688,14 @@ input[type="date"]:not(.has-value):before{
   color:#b2b2b2;
   content: attr(placeholder);
   display: block;
-  padding-top: 10px!important;
+  /* padding-top: 10px!important; */
 }
+
+#profileForm .add_q_box input {
+  padding-left: none;
+  border-left: none!important;
+}
+
 .updaload-icon-box {
   position: absolute;
   top: 84px;
@@ -676,7 +737,7 @@ height: 50px;
 }
 .like-dislike ul li {
   float: left;
-  margin-left: 12px;
+  margin-left: 4px;
   color: #2b2b2b;
 }
 
@@ -692,9 +753,18 @@ height: 50px;
 
 
 .like-dislike ul li a img {
-  width: 25px;
+ 
   height: auto;
   border-radius: 0;
+}
+
+ .second-box-for-q-d .row {
+  padding: 0;
+}
+.comment-lest-q-d p {
+  overflow: visible;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 .like-dislike ul li a {
  text-decoration: none;
@@ -705,7 +775,18 @@ height: 50px;
   position: relative;
   padding-left: 5px;
 }
-
+.popup-head {
+  padding: 15px 10px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+  background-color: #E44A30;
+}
+.popup-title {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  color: #fff;
+}
 
 .second-box-for-q-d {
   border: 1px solid #ddd;
@@ -717,7 +798,7 @@ height: 50px;
 
 .share-chat-btn-q-d .button.button-small.send {
   border: 1px solid #ddd;
-  border-radius: 100px;
+  border-radius:  0px;
   width: 50%;
   color: #E44A30;
 }
@@ -725,7 +806,7 @@ height: 50px;
 .share-chat-btn-q-d .button.button-small.button-stable.chat {
   width: 46%;
   border: 1px solid #ddd;
-  border-radius: 100px;
+  border-radius:0px;
 }
 
 .more-op--btn-q-d ul li {
@@ -831,7 +912,7 @@ height: 100%;
 input[type="date"].has-value {
   content: attr(value);
   display: block;
-  padding: 9px !important;
+  padding-top: 9px !important;
 }
 
 .popup-buttons .button:last-child {
@@ -849,9 +930,11 @@ input[type="date"].has-value {
 }
 
 .q-d-submit-btn{
-  background-color: #E44A30;
-  width: 100%;
-  margin-bottom: 20px;
+background-color: #E44A30;
+width: 100%;
+margin-bottom: 20px;
+border-radius: 0px;
+color: #fff;
 }
 
 span.back-text {
@@ -1062,7 +1145,7 @@ width: 40px;
 }
 .fullscreen-image {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 300px;
   bottom: 0;
   left: 0;
   margin: auto;
@@ -1072,6 +1155,287 @@ width: 40px;
   top: 0;
 }
 
+
+.plusnineone {
+  position: absolute;
+  left: 20%;
+  top: 10px;
+}
+
+.mobile_nemuer-input.ng-pristine.ng-untouched.ng-empty.ng-invalid.ng-invalid-required.ng-valid-minlength.ng-valid-maxlength {
+  padding-left: 40px;
+}
+
+.profile-other {
+  width: 85px;
+  border-radius: 100px;
+  height: 85px;
+  border: 2px solid red;
+}
+.option-diveother h4 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.main-tab-box {
+  background-color: #eee;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+.main-tab-box ul li {
+  width: 32%;
+  display: inline-grid;
+  text-align: center;
+}
+
+.main-tab-box ul li h5 {
+  font-weight: normal;
+  color: gray;
+}
+
+.main-tab-box ul li i {
+   font-size: 20px;
+  color: gray;
+}
+
+.main-tab-box ul .active h5 {
+  color: red !important;
+}
+
+.main-tab-box ul .active i {
+  color: red !important;
+  font-size: 20px;
+}
+
+.button.button-assertive.filterbtn {
+  width: 100px;
+  margin: auto;
+  display: block;
+}
+
+.item.range.range-positive.pricerange-filter {
+  border: none;
+}
+
+.email-address-profile input {
+  border: none !important;
+}
+
+a{
+  text-decoration: none;
+}
+.mh-select-multi{
+  /* padding-left: 16px !important; */
+  .checkbox > input{
+    float:right !important;
+  }
+}
+
+.mh-select-modal{
+  width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+.gender-box.add-q-gender-box label.item.item-radio.ng-not-empty.ng-valid {
+  width: 100%;
+}
+
+.gender-box.add-q-gender-box .item-content.disable-pointer-events {
+  padding: 13px 5px !important;
+  font-size: 14px;
+}
+
+button.button.ng-binding.deny {
+  background-color: hsl(0, 0%, 100%);
+  border: 1px solid #E44A30 !important;
+  color: #E44A30 !important;
+}
+
+
+.bar.bar-positive {
+  border-color: #E44A30!important;
+  background-color: #E44A30!important;
+  background-image: none;
+  color: #fff;
+}
+.norecord{
+  position: absolute;
+  margin-top: 21%;
+  margin-left: 4%;
+}
+.mbsc-sc-itm div{
+  right: -120% !important;
+}
+.mbsc-ios.mbsc-form {
+  background: transparent!important;
+  color: #000;
+}
+
+.list-for-customes {
+  padding: 15px;
+  border: 1px solid #eee!important;
+}
+
+
+
+a.remove-user-btn {
+  color: red!important;
+  font-size: 12px;
+  border: 1px solid #eee;
+  padding: 2px 20px;
+  border-radius: 32px;
+}
+
+
+.messages {
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-align-content: center !important;
+  -ms-flex-line-pack: center !important;
+  align-content: center !important;
+  -webkit-box-align: center !important;
+  -moz-box-align: center !important;
+  -webkit-align-items: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  margin-bottom: 20px !important;
+  margin-top: 5px!important;
+}
+  .message {
+    -webkit-box-flex: 1 !important;
+    -moz-box-flex: 1 !important;
+    -webkit-flex: 1 1 auto !important;
+    -ms-flex: 1 1 auto !important;
+    flex: 1 1 auto !important;
+    padding: 10px !important;
+    -webkit-transition: all 250ms ease-in-out !important;
+    transition: all 250ms ease-in-out !important;
+    overflow: hidden !important;
+    text-align: left !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    -moz-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+
+.time {
+  -webkit-box-flex: 0 !important;
+  -moz-box-flex: 0 !important;
+  -webkit-flex: 0 1 auto !important;
+  -ms-flex: 0 1 auto !important;
+  flex: 0 1 auto !important;
+  -webkit-align-self: auto !important;
+  -ms-flex-item-align: auto !important;
+  align-self: auto !important;
+  width: 120px !important;
+  text-align: center !important;
+  padding: 0 0 0 0 !important;
+  -webkit-transition: all 250ms ease-in-out !important;
+  transition: all 250ms ease-in-out !important;
+  -webkit-transform: translate3d(10px, 0, 0) !important;
+  -moz-transform: translate3d(10px, 0, 0) !important;
+  transform: translate3d(10px, 0, 0) !important;
+  font-size: 12px;
+  color: gray;
+}
+.time.slide-right {
+    -webkit-transform: translate3d(130px, 0, 0) !important;
+    -moz-transform: translate3d(130px, 0, 0) !important;
+    transform: translate3d(130px, 0, 0) !important;
+  }
+
+.messages.other .message{
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    -moz-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+    text-align: right !important;
+  }
+  .messages.other .message.slide-right {
+    -webkit-transform: translate3d(120px, 0, 0) !important;
+    -moz-transform: translate3d(120px, 0, 0) !important;
+    transform: translate3d(120px, 0, 0) !important;
+  }
+  .messages.other span {
+    color: black !important;
+    background-color: #C7C7CC !important;
+  }
+.chat-text {
+  background: #eee !important;
+   display: inline-block !important; 
+  color: #2b2b2b !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  text-align: left !important;
+  max-width: 240px !important;
+}
+
+
+ 
+.button.button-clear.send-button-msg {
+  border-color: transparent;
+  background: none;
+  box-shadow: none;
+  font-size: 31px;
+  width: 43px;
+  color: #fff;
+  border-radius: 100px;
+  margin-right: 8px;
+  height: 60px;
+  background-color: gray;
+  font-weight: bold;
+  border: none;
+}
+.bar.item-input-inset .item-input-wrapper input {
+  padding-left: 8px;
+  width: 94%;
+  height: 44px;
+  background: #eee;
+}
+
+.bar-stable.item-input-inset.chatinput-box.bar.bar-footer {
+  border-color: transparent;
+  background-color: #eee;
+  background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
+  color: #444;
+  height: 60px;
+}
+
+.chat-messages-box {
+  padding: 10px;
+}
+
+.inbound-messages {
+  margin: 10px 0;
+}
+.inbound-messages .time-sec {
+  font-size: 12px;
+  padding: 10px 4px;
+  color: gray;
+  text-align: left;
+}
+
+.outbound-messages {
+  margin: 10px 0;
+  float: right;
+  width: 100%;
+  display: block;
+  text-align: right;
+}
+.outbound-messages  .time-sec {
+  font-size: 12px;
+  /* padding: 10px 4px; */
+  color: gray;
+  text-align: right;
+}
+
+/* .title.title-left.header-item{
+  left:5% !important;
+} */
 /* Fix modal backdrop for smaller devices */
 @media (max-width: 679px) {
   .active .modal-backdrop-bg {

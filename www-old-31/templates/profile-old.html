@@ -1,0 +1,223 @@
+<ion-view view-title="Profile" cache-view="false">
+    <ion-content>
+        <div class="other-pro-box padding">
+            <div class="row">
+                <div class="col  text-center">
+                    <img class="pr-img-main profile-pic-img" ng-show="showMe == '' && profile.user_profile == ''" src="img/default_user.png"
+                    width="200px;">
+                   <img ng-click="modal.show()" class="pr-img-main profile-pic-img" ng-show="showMe == '' && profile.user_profile !== ''"
+                    src="{{profile.user_profile}}" width="200px;">
+                   <img ng-show="showMe != ''" class="pr-img-main profile-pic-img" ng-src="{{pathForImage(image)}}" width="200px;">
+                </div>
+                <div class="col col-75">
+                    <div class="option-diveother">
+                        <div class="row text-center">
+                            <div class="col text-center" ng-click="setTab(1)">
+                                <h4>
+                                    <i class="ion-help-circled"></i>
+                                </h4>
+                                <p>Question</p>
+                            </div>
+                            <div class="col text-center" ng-click="setTab(2)">
+                                <h4>
+                                    <i class="ion-android-checkmark-circle"></i>
+                                </h4>
+                                <p>Answer</p>
+                            </div>
+                            <div class="col text-center" ng-click="setTab(3)">
+                                <h4>
+                                    <i class="ion-ios-bookmarks"></i>
+                                </h4>
+                                <p>Bookmarks</p>
+                            </div>
+                        </div>
+                        <!-- <button class="button button-dark">
+                            Edit Profile
+                        </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-wrap">
+			<div class="q-box" ng-if="activeTab == 1" ng-repeat="list in bookmarks">
+				<div class="left-q-sec">
+					<div ng-click="detail(list.id)">
+						<h4>{{list.post_title}}</h4>
+						<p class="small-desk">{{list.post_description}}</p>
+						<div class="posted-user-pro">
+							<img class="user-cmt-profile" ng-if="list.user_profile ==''" src="img/profile_ico.png">
+							<img class="user-cmt-profile" ng-if="list.user_profile !==''" src="{{list.user_profile}}">
+							<div class="text-rpo-in">
+								<h4>{{list.user_fullname}}</h4>
+								<p>{{list.post_datetime}}</p>
+							</div>
+						</div>
+					</div>
+					<div class="bookmark-and-share">
+						<ul>
+							<li ng-click="shareLink()">
+								<a href="javascript:;">
+									<img width="30px" src="img/send.png">
+								</a>
+							</li>
+							<!-- <li ng-if="list.is_bookmark == 2" ng-click="bookmark(1, list.id)">
+								<a href="javascript:;">
+									<img width="30px" src="img/bookmark_button.png">
+								</a>
+							</li>
+							<li ng-if="list.is_bookmark == 1" ng-click="bookmark(2, list.id)">
+								<a href="javascript:;">
+									<img width="30px" src="img/bookmark_button.png">
+								</a>
+							</li> -->
+						</ul>
+					</div>
+				</div>
+				<div class="right-q-sec">
+					<ul>
+						<li>
+							<a href="javascript:;">
+								<img width="20px" src="img/comment.png">
+							</a>
+							<span>{{list.totalcmnt}}</span>
+						</li>
+						<li ng-click="likeUnlike(1, list.id)">
+							<a href="javascript:;" class="{{(list.like_type == 1) ? 'disable' : '' }}">
+								<img width="25px" src="img/like.png">
+							</a>
+							<span>{{list.likes}}</span>
+						</li>
+						<li ng-click="likeUnlike(2, list.id)">
+							<a href="javascript:;" class="{{(list.like_type == 2) ? 'disable' : '' }}">
+								<img width="20px" src="img/dislike.png">
+							</a>
+							<span>{{list.unlike}}</span>
+						</li>
+					</ul>
+				</div>
+            </div>
+            <div class="q-box" ng-if="activeTab == 2" ng-repeat="list in post_quetions">
+				<div class="left-q-sec">
+					<div ng-click="detail(list.id)">
+						<h4>{{list.post_title}}</h4>
+						<p class="small-desk">{{list.post_description}}</p>
+						<div class="posted-user-pro">
+							<img class="user-cmt-profile" ng-if="list.user_profile ==''" src="img/profile_ico.png">
+							<img class="user-cmt-profile" ng-if="list.user_profile !==''" src="{{list.user_profile}}">
+							<div class="text-rpo-in">
+								<h4>{{list.user_fullname}}</h4>
+								<p>{{list.post_datetime}}</p>
+							</div>
+						</div>
+					</div>
+					<div class="bookmark-and-share">
+						<ul>
+							<li ng-click="shareLink()">
+								<a href="javascript:;">
+									<img width="30px" src="img/send.png">
+								</a>
+							</li>
+							<!-- <li ng-if="list.is_bookmark == 2" ng-click="bookmark(1, list.id)">
+								<a href="javascript:;">
+									<img width="30px" src="img/bookmark_button.png">
+								</a>
+							</li>
+							<li ng-if="list.is_bookmark == 1" ng-click="bookmark(2, list.id)">
+								<a href="javascript:;">
+									<img width="30px" src="img/bookmark_button.png">
+								</a>
+							</li> -->
+						</ul>
+					</div>
+				</div>
+				<div class="right-q-sec">
+					<ul>
+						<li>
+							<a href="javascript:;">
+								<img width="20px" src="img/comment.png">
+							</a>
+							<span>{{list.totalcmnt}}</span>
+						</li>
+						<li ng-click="likeUnlike(1, list.id)">
+							<a href="javascript:;" class="{{(list.like_type == 1) ? 'disable' : '' }}">
+								<img width="25px" src="img/like.png">
+							</a>
+							<span>{{list.likes}}</span>
+						</li>
+						<li ng-click="likeUnlike(2, list.id)">
+							<a href="javascript:;" class="{{(list.like_type == 2) ? 'disable' : '' }}">
+								<img width="20px" src="img/dislike.png">
+							</a>
+							<span>{{list.unlike}}</span>
+						</li>
+					</ul>
+				</div>
+            </div>
+            <div class="q-box" ng-if="activeTab == 3" ng-repeat="list in ans_question">
+				<div class="left-q-sec">
+					<div ng-click="detail(list.id)">
+						<h4>{{list.post_title}}</h4>
+						<p class="small-desk">{{list.post_description}}</p>
+						<div class="posted-user-pro">
+							<img class="user-cmt-profile" ng-if="list.user_profile ==''" src="img/profile_ico.png">
+							<img class="user-cmt-profile" ng-if="list.user_profile !==''" src="{{list.user_profile}}">
+							<div class="text-rpo-in">
+								<h4>{{list.user_fullname}}</h4>
+								<p>{{list.post_datetime}}</p>
+							</div>
+						</div>
+					</div>
+					<div class="bookmark-and-share">
+						<ul>
+							<li ng-click="shareLink()">
+								<a href="javascript:;">
+									<img width="30px" src="img/send.png">
+								</a>
+							</li>
+							<!-- <li ng-if="list.is_bookmark == 2" ng-click="bookmark(1, list.id)">
+								<a href="javascript:;">
+									<img width="30px" src="img/bookmark_button.png">
+								</a>
+							</li>
+							<li ng-if="list.is_bookmark == 1" ng-click="bookmark(2, list.id)">
+								<a href="javascript:;">
+									<img width="30px" src="img/bookmark_button.png">
+								</a>
+							</li> -->
+						</ul>
+					</div>
+				</div>
+				<div class="right-q-sec">
+					<ul>
+						<li>
+							<a href="javascript:;">
+								<img width="20px" src="img/comment.png">
+							</a>
+							<span>{{list.totalcmnt}}</span>
+						</li>
+						<li ng-click="likeUnlike(1, list.id)">
+							<a href="javascript:;" class="{{(list.like_type == 1) ? 'disable' : '' }}">
+								<img width="25px" src="img/like.png">
+							</a>
+							<span>{{list.likes}}</span>
+						</li>
+						<li ng-click="likeUnlike(2, list.id)">
+							<a href="javascript:;" class="{{(list.like_type == 2) ? 'disable' : '' }}">
+								<img width="20px" src="img/dislike.png">
+							</a>
+							<span>{{list.unlike}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+    </ion-content>
+
+	<script id="image-modal.html" type="text/ng-template">
+		<div class="modal image-modal transparent" ng-click="closeModal()">
+			<ion-pane class="transparent">
+					<img class="fullscreen-image" src="{{profile.user_profile}}">
+			</ion-pane>
+		</div>
+	</script>
+</ion-view>

@@ -1,0 +1,62 @@
+<ion-side-menus enable-menu-with-back-views="false" cache-view="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <!-- <ion-nav-back-button>
+      </ion-nav-back-button> -->
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear {{menuCollapsed}}" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+    <ion-content class="menu-con">
+      <div class="profile_pic_side_menu">
+        <img src="{{userProfile}}" class="profile-pic-img">
+        <h4>{{user_fullname}}</h4>
+        <p>{{user_email}}</p>
+      </div>
+      <ion-list>
+        <ion-item menu-close href="#/rightmenu/dashboard">
+          <img src="img/home.png" width="30px;" />
+          <span>Dashboard</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/my_profile">
+          <img src="img/my_profile.png" width="30px;" />
+          <span>My Profile</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/chatMsg">
+          <img src="img/chat.png" width="30px;" />
+          <span>chat</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/profile">
+          <img src="img/bookmark.png" width="30px;" />
+          <span>Profile</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/premium">
+          <img src="img/premium.png" width="30px;" />
+          <span>Premium Page</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/change_password" ng-if="changePwd == 1">
+          <img src="img/password.png" width="30px;" />
+          <span>Change Password</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/refer_friends">
+          <img src="img/refer_a_frind.png" width="30px;" />
+          <span>Refer a Friends</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/faq">
+          <img src="img/faq.png" width="30px;" />
+          <span>FAQ</span>
+        </ion-item>
+        <ion-item menu-close ng-click="logout()" style="padding:0;">
+          <div style="padding: 5px 49px 5px 16px!important;">
+            <img src="img/logout.png" width="30px;" />
+            <span>Logout</span>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

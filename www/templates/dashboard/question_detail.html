@@ -1,40 +1,55 @@
 <ion-view view-title="Question Detail" cache-view="false">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon ion-arrow-left-c headerbuttonStaff" ng-click="goback()"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <ion-title style="color:white;font-size: 19px;
+    line-height: 44px;
+    width: 100%;
+    text-align: left;
+    padding-left: 20px;">Question Detail</ion-title>
+  </ion-nav-title>  
   <ion-content ng-init="postDetail()">
     <div class="q-deatils-box">
       <div class="posted-user-pro">
-        <img ng-if="detail.user_profile==''" src="img/profile_ico.png">
-        <img ng-if="detail.user_profile!==''" src="{{detail.user_profile}}">
+        <img class="user-cmt-profile" ng-if="detail.user_profile==''" src="img/profile_ico.png">
+        <img class="user-cmt-profile" ng-if="detail.user_profile!==''" src="{{detail.user_profile}}">
         <div class="text-rpo-in">
           <h4>{{detail.user_fullname}}</h4>
           <p>{{detail.post_datetime}}</p>
-          <!-- <autocomplete ng-model="result" attr-placeholder="type to search users..." click-activation="true" data="users" on-type="doSomething" on-select="doSomethingElse"></autocomplete> -->
         </div>
         <div class="like-dislike">
           <ul>
+            <li ng-if="detail.is_bookmark == 2" ng-click="bookmark(1)">
+              <a href="javascript:;">
+                <img width="30px" src="img/bookmark_button.png">
+              </a>
+            </li>
+            <li ng-if="detail.is_bookmark == 1" ng-click="bookmark(2)">
+              <a href="javascript:;">
+                <img width="30px" src="img/bookmark_button_feel.png">
+              </a>
+            </li>
             <li>
-              <a href="javascript:;" ng-click="likeUnlike(1)">
-                <img width="30px" src="img/like.png">
+              <a href="javascript:;" ng-click="likeUnlike(1)" ng-if="detail.like_type == 2 || detail.like_type == 0">
+                <img width="25px" src="img/like.png">
+                <span>{{detail.likes}}</span>
+              </a>
+              <a href="javascript:;" ng-if="detail.like_type == 1">
+                <img width="25px" src="img/like_feel.png">
                 <span>{{detail.likes}}</span>
               </a>
             </li>
-            <li>
-              <a href="javascript:;" ng-click="likeUnlike(2)">
+            <li class="dislike-li">
+              <a href="javascript:;" ng-click="likeUnlike(2)" ng-if="detail.like_type == 1 || detail.like_type == 0">
                 <img width="25px" src="img/dislike.png">
                 <span>{{detail.unlike}}</span>
               </a>
-            </li>
-            <!-- <li>
-              <a href="javascript:;">
-                <img width="30px" src="img/send.png">
-                <span>15</span>
+              <a href="javascript:;" ng-if="detail.like_type == 2">
+                <img width="25px" src="img/dislike_feel.png">
+                <span>{{detail.unlike}}</span>
               </a>
             </li>
-            <li>
-              <a href="javascript:;">
-                <img width="30px" src="img/bookmark_button.png">
-                <span>25</span>
-              </a>
-            </li> -->
           </ul>
         </div>
       </div>
@@ -45,22 +60,22 @@
       <div class="row">
         <div class="col">
           <div class="share-chat-btn-q-d">
-            <button class="button button-small send">
-              Send
+            <button ng-click="shareLink()" class="button button-small send">
+              Share
             </button>
-            <button class="button button-small button-stable chat">
+            <a type="button" href="#/app/chatdetail/{{detail.user_id}}/{{detail.user_fullname}}/detail" class="button button-small button-stable chat">
               Chat
-            </button>
+            </a>
           </div>
         </div>
         <div class="col">
           <div class="more-op--btn-q-d">
             <ul>
               <li ng-if="userid == detail.user_id" ng-click="">
-                <a href="javascript:;">Help</a>
+                <a href="javascript:;" ng-click="modal.show()">Help</a>
               </li>
               <li>
-                <a href="javascript:;" ng-if="userid !== detail.user_id" ng-click="reportPopUp()">Report </a>
+                <a href="javascript:;" ng-if="userid != detail.user_id" ng-click="reportPopUp()">Report </a>
               </li>
               <li ng-if="userid == detail.user_id">
                 <a href="javascript:;" ng-click="deletePost()">Remove </a>
@@ -71,6 +86,7 @@
       </div>
     </div>
     <div class="comment-lest-q-d">
+      <h4 class="total-user-head" ng-if="detail.comments">Total Reply({{detail.comments.length}})</h4>
       <div class="list">
         <div class="item item-thumbnail-left" ng-repeat="cmnt in detail.comments">
           <img width="50px" src="img/profile_ico.png" ng-if="cmnt.user_profile ==''">
@@ -122,9 +138,37 @@
       <label class="item item-input">
         <textarea placeholder="Comment" ng-model="postData.comment" style="background-color: #EDF2F6;"></textarea>
       </label>
-      <button class="button button-dark q-d-submit-btn" type="button" ng-click="addComment()" style="width: 100%">
+      <button class="button button-dark q-d-submit-btn" type="button" ng-click="addComment()" style="width: 100%;background-color: #E44A30;color: #fff;margin-bottom: 20px;border-radius: 0px;">
         Comment
       </button>
     </div>
   </ion-content>
+
+  <script id="modal.html" type="text/ng-template">
+    <div class="modal">
+      <header class="bar bar-header bar-positive">
+          <div ng-click="saveHelp()" class="button button-clear"><span class="ion-checkmark-round"></span></div>
+        <h1 class="title">Select Users</h1>
+        <div class="button button-clear" ng-click="modal.hide()"><span class="ion-android-close"></span></div>
+      </header>
+      <content has-header="true" padding="true">
+          <div style="display:none" mobiscroll-form>
+              <div class="mbsc-form-group custom-mbsc-box">
+                <div class="mbsc-form-group-title">Users</div>
+                <label>
+                  <input ng-model="localData.id" mobiscroll-select="settings">
+                </label>
+              </div>
+              <div ng-if="selectedUser">
+                <div ng-repeat="user in selectedUser" class="list-for-customes">
+                  <div >{{user.text}} <a href="javascript:;" ng-click="removeUser($index)" class="remove-user-btn" style="float:right;">Remove</a></div>
+                </div>
+              </div>
+          </div>
+          <!--<div class="save-button-help text-center">
+            <button ng-click="saveHelp()">Save</button>
+          </div>-->
+      </content>
+    </div>
+  </script>
 </ion-view>

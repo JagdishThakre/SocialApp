@@ -1,0 +1,249 @@
+<ion-view view-title="Profile" cache-view="false">
+	<ion-nav-buttons side="left">
+		<button class="button button-icon ion-arrow-left-c headerbuttonStaff" ng-click="goback()"></button>
+	</ion-nav-buttons>
+	<ion-content>
+		<div class="other-pro-box padding">
+			<div class="row">
+				<div class="col  text-center">
+					<img class="profile-other" ng-show="showMe == '' && profile.user_profile == ''" src="img/default_user.png" width="200px;">
+					<img ng-click="modal.show()" class="profile-other" ng-show="showMe == '' && profile.user_profile !== ''" src="{{profile.user_profile}}"
+					 width="200px;">
+					<img ng-show="showMe != ''" class="profile-other" ng-src="{{pathForImage(image)}}" width="200px;">
+				</div>
+				<div class="col col-75">
+					<div class="option-diveother">
+						<div class="row text-center">
+							<div class="col text-center" ng-click="setTab(1)">
+								<h4>
+									{{post_quetions.length}}
+								</h4>
+								<p>Question</p>
+							</div>
+							<div class="col text-center" ng-click="setTab(2)">
+								<h4>
+									{{ans_question.length}}
+								</h4>
+								<p>Answer</p>
+							</div>
+							<div class="col text-center" ng-click="setTab(3)">
+								<h4>
+									{{bookmarks.length}}
+								</h4>
+								<p>Bookmarks</p>
+							</div>
+						</div>
+						<!-- <button class="button button-dark">
+                            Edit Profile
+                        </button> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="main-tab-box">
+			<ul>
+				<li class="{{(activeTab == 1) ? 'active' : ''}}" ng-click="setTab(1)">
+					<i class="ion-help-circled"></i>
+					<!--<h5>Question</h5>-->
+				</li>
+				<li class="{{(activeTab == 2) ? 'active' : ''}}" ng-click="setTab(2)">
+					<i class="ion-android-checkmark-circle"></i>
+				</li>
+				<li class="{{(activeTab == 3) ? 'active' : ''}}" ng-click="setTab(3)">
+					<i class="ion-ios-bookmarks"></i>
+					</i>
+				</li>
+			</ul>
+		</div>
+		<div class="dashboard-wrap">
+			<div class="q-box" ng-if="activeTab == 3" ng-repeat="list in bookmarks">
+				<div class="left-q-sec">
+					<div ng-click="detail(list.id, 3)">
+						<h4>{{list.post_title}}</h4>
+						<p class="small-desk">{{list.post_description}}</p>
+						<div class="posted-user-pro">
+							<img class="user-cmt-profile" ng-if="list.user_profile ==''" src="img/profile_ico.png">
+							<img class="user-cmt-profile" ng-if="list.user_profile !==''" src="{{list.user_profile}}">
+							<div class="text-rpo-in">
+								<h4>{{list.user_fullname}}</h4>
+								<p>{{list.post_datetime}}</p>
+							</div>
+						</div>
+					</div>
+					<div class="bookmark-and-share">
+						<ul>
+							<li ng-click="shareLink()">
+								<a href="javascript:;">
+									<img width="30px" src="img/send.png">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="right-q-sec">
+					<ul>
+						<li>
+							<a href="javascript:;">
+								<img width="20px" src="img/comment.png">
+							</a>
+							<span>{{list.totalcmnt}}</span>
+						</li>
+						<li ng-click="likeUnlike(1, list.id)">
+							<a href="javascript:;" ng-click="likeUnlike(1, list.id)" ng-if="list.like_type == 2 || list.like_type == 0">
+								<img width="25px" src="img/like.png">
+							</a>
+							<a href="javascript:;" ng-if="list.like_type == 1">
+								<img width="25px" src="img/like_feel.png">
+							</a>
+							<span>{{list.likes}}</span>
+						</li>
+						<li ng-click="likeUnlike(2, list.id)">
+							<a ng-click="likeUnlike(2, list.id)" href="javascript:;" ng-if="list.like_type == 1 || list.like_type == 0">
+								<img width="25px" src="img/dislike.png">
+							</a>
+							<a href="javascript:;" ng-if="list.like_type == 2">
+								<img width="25px" src="img/dislike_feel.png">
+							</a>
+							<span>{{list.unlike}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="q-box" ng-if="activeTab == 1" ng-repeat="list in post_quetions">
+				<div class="left-q-sec">
+					<div ng-click="detail(list.id, 1)">
+						<h4>{{list.post_title}}</h4>
+						<p class="small-desk">{{list.post_description}}</p>
+						<div class="posted-user-pro">
+							<img class="user-cmt-profile" ng-if="list.user_profile ==''" src="img/profile_ico.png">
+							<img class="user-cmt-profile" ng-if="list.user_profile !==''" src="{{list.user_profile}}">
+							<div class="text-rpo-in">
+								<h4>{{list.user_fullname}}</h4>
+								<p>{{list.post_datetime}}</p>
+							</div>
+						</div>
+					</div>
+					<div class="bookmark-and-share">
+						<ul>
+							<li ng-click="shareLink()">
+								<a href="javascript:;">
+									<img width="30px" src="img/send.png">
+								</a>
+							</li>
+							<li ng-if="list.is_bookmark == 2" ng-click="bookmark(1, list.id)">
+								<a href="javascript:;">
+									<img width="30px" src="img/bookmark_button.png">
+								</a>
+							</li>
+							<li ng-if="list.is_bookmark == 1" ng-click="bookmark(2, list.id)">
+								<a href="javascript:;">
+									<img width="30px" src="img/bookmark_button_feel.png">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="right-q-sec">
+					<ul>
+						<li>
+							<a href="javascript:;">
+								<img width="20px" src="img/comment.png">
+							</a>
+							<span>{{list.totalcmnt}}</span>
+						</li>
+						<li ng-click="likeUnlike(1, list.id)">
+							<a href="javascript:;" ng-click="likeUnlike(1, list.id)" ng-if="list.like_type == 2 || list.like_type == 0">
+								<img width="25px" src="img/like.png">
+							</a>
+							<a href="javascript:;" ng-if="list.like_type == 1">
+								<img width="25px" src="img/like_feel.png">
+							</a>
+							<span>{{list.likes}}</span>
+						</li>
+						<li ng-click="likeUnlike(2, list.id)">
+							<a ng-click="likeUnlike(2, list.id)" href="javascript:;" ng-if="list.like_type == 1 || list.like_type == 0">
+								<img width="25px" src="img/dislike.png">
+							</a>
+							<a href="javascript:;" ng-if="list.like_type == 2">
+								<img width="25px" src="img/dislike_feel.png">
+							</a>
+							<span>{{list.unlike}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="q-box" ng-if="activeTab == 2" ng-repeat="list in ans_question">
+				<div class="left-q-sec">
+					<div ng-click="detail(list.id, 2)">
+						<h4>{{list.post_title}}</h4>
+						<p class="small-desk">{{list.post_description}}</p>
+						<div class="posted-user-pro">
+							<img class="user-cmt-profile" ng-if="list.user_profile ==''" src="img/profile_ico.png">
+							<img class="user-cmt-profile" ng-if="list.user_profile !==''" src="{{list.user_profile}}">
+							<div class="text-rpo-in">
+								<h4>{{list.user_fullname}}</h4>
+								<p>{{list.post_datetime}}</p>
+							</div>
+						</div>
+					</div>
+					<div class="bookmark-and-share">
+						<ul>
+							<li ng-click="shareLink()">
+								<a href="javascript:;">
+									<img width="30px" src="img/send.png">
+								</a>
+							</li>
+							<li ng-if="list.is_bookmark == 2" ng-click="bookmark(1, list.id)">
+								<a href="javascript:;">
+									<img width="30px" src="img/bookmark_button.png">
+								</a>
+							</li>
+							<li ng-if="list.is_bookmark == 1" ng-click="bookmark(2, list.id)">
+								<a href="javascript:;">
+									<img width="30px" src="img/bookmark_button_feel.png">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="right-q-sec">
+					<ul>
+						<li>
+							<a href="javascript:;">
+								<img width="20px" src="img/comment.png">
+							</a>
+							<span>{{list.totalcmnt}}</span>
+						</li>
+						<li ng-click="likeUnlike(1, list.id)">
+							<a href="javascript:;" ng-click="likeUnlike(1, list.id)" ng-if="list.like_type == 2 || list.like_type == 0">
+								<img width="25px" src="img/like.png">
+							</a>
+							<a href="javascript:;" ng-if="list.like_type == 1">
+								<img width="25px" src="img/like_feel.png">
+							</a>
+							<span>{{list.likes}}</span>
+						</li>
+						<li ng-click="likeUnlike(2, list.id)">
+							<a ng-click="likeUnlike(2, list.id)" href="javascript:;" ng-if="list.like_type == 1 || list.like_type == 0">
+								<img width="25px" src="img/dislike.png">
+							</a>
+							<a href="javascript:;" ng-if="list.like_type == 2">
+								<img width="25px" src="img/dislike_feel.png">
+							</a>
+							<span>{{list.unlike}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+
+	<script id="image-modal.html" type="text/ng-template">
+		<div class="modal image-modal transparent" ng-click="closeModal()">
+			<ion-pane class="transparent">
+					<img class="fullscreen-image" src="{{profile.user_profile}}">
+			</ion-pane>
+		</div>
+	</script>
+</ion-view>

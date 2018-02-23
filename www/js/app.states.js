@@ -8,6 +8,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 templateUrl: 'templates/menu.html',
                 controller: 'AppCtrl'
             })
+            /**Sidemenu state */
+            .state('rightmenu', {
+                url: '/rightmenu',
+                abstract: true,
+                templateUrl: 'templates/menu-right.html',
+                controller: 'AppCtrl'
+            })
             /**Login page state */
             .state('login', {
                 url: '/login',
@@ -56,6 +63,29 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     }
                 }
             })
+
+            /**chat state */
+            .state('app.chat', {
+                url: '/chat',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/chat.html',
+                        controller: 'chatCtrl'
+                    }
+                }
+            })
+
+            /**chat  detail state */
+            .state('app.chatdetail', {
+                url: '/chatdetail/:to_user_id/:username/:chats',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/chatdetail.html',
+                        controller: 'chatCtrl'
+                    }
+                }
+            })
+
             /**Change password state*/
             .state('app.change_password', {
                 url: '/change_password',
@@ -76,6 +106,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     }
                 }
             })
+            /**Profile page state */
+            .state('app.profile', {
+                url: '/profile',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/profile.html',
+                        controller: 'queProfileCtrl'
+                    }
+                }
+            })
             /**User profile page state */
             .state('app.my_profile', {
                 url: '/my_profile',
@@ -87,7 +127,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             })
             /**Application dashboard state */
-            .state('app.dashboard', {
+            .state('rightmenu.dashboard', {
                 url: '/dashboard',
                 views: {
                     'menuContent': {
@@ -107,7 +147,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             })
             .state('app.postDetail', {
-                url: '/postDetail/:post_id',
+                url: '/postDetail/:post_id/:type',
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/dashboard/question_detail.html',
@@ -117,8 +157,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             });
     /* if none of the above states are matched, use this as the fallback*/
     /**If user not logged in, then login state otherwise dashboard state */
-    if(localStorage.UserId) {
-        $urlRouterProvider.otherwise('/app/dashboard');
+    var local = localStorage.getItem("UserId");
+    if(local && local != null && local != undefined && local != '') {
+        $urlRouterProvider.otherwise('/rightmenu/dashboard');
     } else {
         $urlRouterProvider.otherwise('/login');
     }
